@@ -227,7 +227,7 @@ export default function AdminDashboardPage() {
                     <Bar
                       dataKey="count"
                       name="Bookings"
-                      fill="#1e1b4b"
+                      fill="#0f766e"
                       radius={[4, 4, 0, 0]}
                     />
                   </BarChart>
@@ -262,7 +262,7 @@ export default function AdminDashboardPage() {
                       </div>
                       <div className="mt-1.5 h-1.5 w-full rounded-full bg-surface-subtle">
                         <div
-                          className="h-1.5 rounded-full bg-brand-900"
+                          className="h-1.5 rounded-full bg-brand-600"
                           style={{ width: `${pct}%` }}
                         />
                       </div>

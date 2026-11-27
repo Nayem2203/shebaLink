@@ -111,8 +111,8 @@ export default function HomePage() {
 
   return (
     <SharedLayout>
-      {/* 1. Reference-Inspired Hero Section */}
-      <section className="relative overflow-hidden border-b border-zinc-900/10 bg-gradient-to-br from-[#f6f5fe] via-white to-[#eef0ff] pt-10 pb-10 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-0">
+      {/* 1. Grounded Hero Section */}
+      <section className="relative overflow-hidden border-b border-zinc-900/10 bg-surface-canvas pt-10 pb-10 sm:pt-14 sm:pb-12 lg:pt-16 lg:pb-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
             {/* Left Column: Eyebrow, Two-Tone Headline, Search Bar & Trust Row */}
@@ -166,7 +166,7 @@ export default function HomePage() {
             {/* Right Column: Hero Technician Photograph + Floating Category Highlights */}
             <div className="relative lg:col-span-6 flex justify-center lg:self-end">
               <div className="relative w-full max-w-lg lg:max-w-none">
-                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-zinc-900/10 bg-white shadow-[0_12px_32px_rgba(30,27,75,0.08)] lg:rounded-b-none lg:border-b-0">
+                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-zinc-900/10 bg-white shadow-[0_12px_32px_rgba(24,24,27,0.08)] lg:rounded-b-none lg:border-b-0">
                   <Image
                     src="/images/hero-technician.jpg"
                     alt="Friendly Bangladeshi home service technician ready to assist"
@@ -177,7 +177,7 @@ export default function HomePage() {
                   />
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/70 to-transparent lg:from-[#eef0ff]/80"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/70 to-transparent lg:from-[#f7f6f2]/80"
                   />
                 </div>
 
@@ -270,7 +270,7 @@ export default function HomePage() {
       {/* 3. How ShebaLink Works (4-Step Horizontal Flow Band) */}
       <section id="how-it-works" className="bg-white pb-12 sm:pb-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-brand-900/10 bg-[#f4f3fd] p-6 sm:p-8">
+          <div className="rounded-2xl border border-zinc-900/10 bg-surface-canvas p-6 sm:p-8">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-center">
               <div className="lg:col-span-3">
                 <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
@@ -348,7 +348,7 @@ export default function HomePage() {
         className="border-t border-zinc-900/10 bg-white py-12 sm:py-16"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-2xl border border-brand-950/15 bg-gradient-to-r from-[#5648de] to-[#312e81] p-7 text-white shadow-[0_12px_32px_rgba(30,27,75,0.12)] sm:p-10">
+          <div className="overflow-hidden rounded-2xl border border-zinc-900/15 bg-brand-900 p-7 text-white shadow-[0_12px_32px_rgba(24,24,27,0.12)] sm:p-10">
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
               {/* Coded Product Card Preview */}
               <div className="lg:col-span-5">
@@ -374,14 +374,14 @@ export default function HomePage() {
 
               {/* Banner Copy & Real Working Actions */}
               <div className="lg:col-span-7">
-                <div className="inline-flex items-center gap-2 text-xs font-medium text-indigo-100">
+                <div className="inline-flex items-center gap-2 text-xs font-medium text-teal-100">
                   <Wrench className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
                   <span>Customer, Provider &amp; Admin Demo Workflows</span>
                 </div>
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                   Book services and manage jobs in one place
                 </h2>
-                <p className="mt-2.5 max-w-xl text-sm text-indigo-100 leading-relaxed">
+                <p className="mt-2.5 max-w-xl text-sm text-teal-100 leading-relaxed">
                   Submit a local service request with photo preview, or switch
                   to Provider Demo Mode to accept incoming requests and update
                   BDT rates.

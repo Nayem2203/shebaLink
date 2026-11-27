@@ -25,6 +25,7 @@ backend/venv/
 *.py[cod]
 *$py.class
 .pytest_cache/
+.coverage
 
 # misc
 .DS_Store
@@ -41,6 +42,7 @@ yarn-error.log*
 .env*.local
 backend/.env
 frontend/.env*.local
+doc
 
 # vercel
 .vercel

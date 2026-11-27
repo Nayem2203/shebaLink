@@ -28,7 +28,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-white/10 bg-brand-950 text-zinc-300">
+    <footer className="border-t border-zinc-800 bg-zinc-900 text-zinc-300">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-12">
           {/* Column 1: Brand & Coverage */}

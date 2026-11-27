@@ -8,8 +8,8 @@
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
-    --brand-primary: #1e1b4b;
-    --brand-accent: #312e81;
+    --brand-primary: #0f3d3e;
+    --brand-accent: #0f766e;
     --surface-canvas: #f7f6f2;
     --surface-card: #ffffff;
     --surface-subtle: #efede7;
