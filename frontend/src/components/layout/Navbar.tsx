@@ -10,6 +10,8 @@ import { RoleSwitcher } from './RoleSwitcher';
 const PUBLIC_NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'Categories', href: '/categories' },
+  { label: 'Providers', href: '/providers' },
   { label: 'How It Works', href: '/#how-it-works' },
   { label: 'Become a Provider', href: '/#become-provider' },
 ];
