@@ -161,7 +161,6 @@ export function BookingForm() {
       ? getCategoryById(selectedService.categoryId)
       : undefined;
 
-    // Customer Demo ID: always bind customer requests to active customer or cust-001 in demo
     const customerId =
       currentUser.role === 'customer' ? currentUser.id : 'cust-001';
     const customerName =
@@ -206,60 +205,62 @@ export function BookingForm() {
   if (submittedBooking) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-emerald-200 bg-white p-8 shadow-sm">
+        <div className="rounded-2xl border border-zinc-900/10 bg-white p-8 shadow-[0_8px_24px_rgba(24,24,27,0.06)] animate-enter">
           <div className="flex flex-col items-center text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-700">
-              <CheckCircle2 className="h-8 w-8" aria-hidden="true" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+              <CheckCircle2 className="h-6 w-6" strokeWidth={1.5} aria-hidden="true" />
             </div>
-            <h1 className="mt-4 text-2xl font-bold text-slate-900">
-              Service Request Confirmed!
+            <h1 className="mt-4 text-2xl font-semibold text-zinc-900">
+              Service Request Confirmed
             </h1>
-            <p className="mt-1.5 text-sm text-slate-600">
-              Your booking request has been saved to LocalStorage and is now
-              visible to the provider.
+            <p className="mt-1.5 text-sm text-zinc-600">
+              Your booking request has been saved to LocalStorage and is ready
+              for provider review.
             </p>
-            <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2">
-              <span className="text-xs font-medium text-slate-500">
-                Booking ID:
+            <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-zinc-900/10 bg-surface-canvas px-4 py-2">
+              <span className="text-xs font-medium text-zinc-500">
+                Booking ID
               </span>
-              <span className="font-mono text-sm font-bold text-indigo-900">
+              <span className="font-mono text-sm font-medium text-zinc-900 tabular-nums">
                 {submittedBooking.id}
               </span>
               <StatusBadge status={submittedBooking.status} size="sm" />
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 gap-4 rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm sm:grid-cols-2">
+          <div className="mt-6 grid grid-cols-1 gap-4 rounded-xl border border-zinc-900/10 bg-surface-canvas p-5 text-sm sm:grid-cols-2">
             <div>
-              <p className="text-xs text-slate-500">Provider</p>
-              <p className="font-semibold text-slate-900">
+              <p className="text-xs text-zinc-500">Provider</p>
+              <p className="mt-0.5 font-medium text-zinc-900">
                 {submittedBooking.providerName}
               </p>
             </div>
             <div>
-              <p className="text-xs text-slate-500">Requested Service</p>
-              <p className="font-semibold text-slate-900">
+              <p className="text-xs text-zinc-500">Requested service</p>
+              <p className="mt-0.5 font-medium text-zinc-900">
                 {submittedBooking.serviceTitle}
               </p>
             </div>
             <div>
-              <p className="text-xs text-slate-500">Preferred Schedule</p>
-              <p className="font-semibold text-slate-900">
+              <p className="text-xs text-zinc-500">Preferred schedule</p>
+              <p className="mt-0.5 font-mono text-xs font-medium text-zinc-900 tabular-nums">
                 {submittedBooking.preferredDate} at{' '}
                 {submittedBooking.preferredTime}
               </p>
             </div>
             <div>
-              <p className="text-xs text-slate-500">Starting Estimate</p>
-              {submittedBooking.quotedPrice ? (
-                <PriceDisplay amount={submittedBooking.quotedPrice} size="sm" />
-              ) : (
-                <p className="font-semibold text-slate-900">To be quoted</p>
-              )}
+              <p className="text-xs text-zinc-500">Starting estimate</p>
+              <div className="mt-0.5">
+                {submittedBooking.quotedPrice ? (
+                  <PriceDisplay amount={submittedBooking.quotedPrice} size="sm" />
+                ) : (
+                  <p className="font-medium text-zinc-900">To be quoted</p>
+                )}
+              </div>
             </div>
             <div className="sm:col-span-2">
-              <p className="text-xs text-slate-500">Service Address</p>
-              <p className="font-medium text-slate-800">
+              <p className="text-xs text-zinc-500">Service address</p>
+              <p className="mt-0.5 font-medium text-zinc-800">
                 {submittedBooking.address}
               </p>
             </div>
@@ -268,10 +269,10 @@ export function BookingForm() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/dashboard/customer"
-              className="inline-flex items-center gap-2 rounded-lg bg-indigo-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800"
+              className="inline-flex h-10 items-center gap-2 rounded-lg bg-brand-900 px-5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_2px_rgba(24,24,27,0.08)] transition-colors duration-150 hover:bg-brand-800"
             >
               <span>Track in Customer Dashboard</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
             </Link>
             <Button
               type="button"
@@ -294,7 +295,7 @@ export function BookingForm() {
     <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
       <PageHeader
         title="Request a Service"
-        subtitle="Complete the grouped steps below to send a service request to a local professional."
+        subtitle="Complete the steps below to send a service request to a local professional."
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },
@@ -307,14 +308,18 @@ export function BookingForm() {
         noValidate
         className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12"
       >
-        {/* Left: Grouped Form Steps */}
         <div className="lg:col-span-8 space-y-6">
-          {/* Step 1: Service & Provider */}
-          <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-base font-bold text-slate-900">
-              1. Service &amp; Problem Details
-            </h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+          {/* Step 01 */}
+          <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+            <div className="flex items-center gap-2.5">
+              <span className="font-mono text-xs font-medium text-brand-800 tabular-nums">
+                01
+              </span>
+              <h2 className="text-base font-medium text-zinc-900">
+                Service and problem details
+              </h2>
+            </div>
+            <p className="mt-1 text-xs text-zinc-500">
               Choose the provider, exact service package, and describe the issue.
             </p>
 
@@ -347,7 +352,7 @@ export function BookingForm() {
                 label="Problem Description"
                 required
                 rows={4}
-                placeholder="Describe what needs fixing or servicing (e.g., Main kitchen socket sparking when turning on electric kettle)..."
+                placeholder="Describe what needs fixing or servicing"
                 error={errors.problemDescription?.message}
                 helperText="Minimum 10 characters so the technician can prepare the right tools."
                 {...register('problemDescription')}
@@ -355,12 +360,17 @@ export function BookingForm() {
             </div>
           </section>
 
-          {/* Step 2: Optional Image Upload with Local Preview */}
-          <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-base font-bold text-slate-900">
-              2. Optional Photo Preview
-            </h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+          {/* Step 02 */}
+          <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+            <div className="flex items-center gap-2.5">
+              <span className="font-mono text-xs font-medium text-brand-800 tabular-nums">
+                02
+              </span>
+              <h2 className="text-base font-medium text-zinc-900">
+                Optional photo preview
+              </h2>
+            </div>
+            <p className="mt-1 text-xs text-zinc-500">
               Attach a photo of the issue (stored locally in browser preview, max
               2 MB).
             </p>
@@ -368,16 +378,17 @@ export function BookingForm() {
             <div className="mt-4">
               <label
                 htmlFor="booking-image-upload"
-                className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 px-6 py-6 text-center transition-colors hover:border-indigo-400 hover:bg-indigo-50/40"
+                className="flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-zinc-900/20 bg-surface-canvas px-6 py-6 text-center transition-colors duration-150 hover:border-brand-700 hover:bg-surface-hover"
               >
                 <ImagePlus
-                  className="h-7 w-7 text-indigo-700"
+                  className="h-5 w-5 text-zinc-500"
+                  strokeWidth={1.5}
                   aria-hidden="true"
                 />
-                <span className="mt-2 text-sm font-medium text-slate-700">
-                  Click to upload an issue photo (optional)
+                <span className="mt-2 text-sm font-medium text-zinc-800">
+                  Upload an issue photo (optional)
                 </span>
-                <span className="mt-0.5 text-xs text-slate-500">
+                <span className="mt-0.5 text-xs text-zinc-500">
                   PNG, JPG, or WebP up to 2 MB
                 </span>
                 <input
@@ -392,26 +403,26 @@ export function BookingForm() {
               {imageError && (
                 <p
                   role="alert"
-                  className="mt-2 text-xs font-medium text-rose-600"
+                  className="mt-2 text-xs font-medium text-rose-700"
                 >
                   {imageError}
                 </p>
               )}
 
               {imagePreview && (
-                <div className="mt-4 flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <div className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-zinc-900/10 bg-surface-canvas p-3">
                   <div className="flex items-center gap-3">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={imagePreview}
                       alt="Uploaded problem preview"
-                      className="h-16 w-16 rounded-lg border border-slate-200 object-cover"
+                      className="h-14 w-14 rounded-lg border border-zinc-900/10 object-cover"
                     />
                     <div>
-                      <p className="text-xs font-semibold text-slate-800">
+                      <p className="text-xs font-medium text-zinc-900">
                         Local Image Attached
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-zinc-500">
                         Visible on your booking card and provider request view.
                       </p>
                     </div>
@@ -421,7 +432,7 @@ export function BookingForm() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setImagePreview(null)}
-                    leftIcon={<Trash2 className="h-3.5 w-3.5 text-rose-600" />}
+                    leftIcon={<Trash2 className="h-4 w-4 text-rose-700" strokeWidth={1.5} />}
                   >
                     Remove
                   </Button>
@@ -430,19 +441,24 @@ export function BookingForm() {
             </div>
           </section>
 
-          {/* Step 3: Address & Contact Information */}
-          <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-base font-bold text-slate-900">
-              3. Address &amp; Contact Information
-            </h2>
+          {/* Step 03 */}
+          <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+            <div className="flex items-center gap-2.5">
+              <span className="font-mono text-xs font-medium text-brand-800 tabular-nums">
+                03
+              </span>
+              <h2 className="text-base font-medium text-zinc-900">
+                Address and contact information
+              </h2>
+            </div>
 
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Input
                   label="Service Address"
                   required
-                  leftIcon={<MapPin className="h-4 w-4" />}
-                  placeholder="House/Flat, Road, Area (e.g., House 24, Padma Residential, Rajshahi)"
+                  leftIcon={<MapPin className="h-4 w-4" strokeWidth={1.5} />}
+                  placeholder="House, flat, road, and area"
                   error={errors.address?.message}
                   {...register('address')}
                 />
@@ -451,7 +467,7 @@ export function BookingForm() {
               <Input
                 label="Contact Phone (Bangladesh)"
                 required
-                leftIcon={<Phone className="h-4 w-4" />}
+                leftIcon={<Phone className="h-4 w-4" strokeWidth={1.5} />}
                 placeholder="+8801711223344"
                 error={errors.customerPhone?.message}
                 helperText="Format: +8801XXXXXXXXX or 01XXXXXXXXX"
@@ -460,11 +476,16 @@ export function BookingForm() {
             </div>
           </section>
 
-          {/* Step 4: Preferred Date, Time & Additional Instructions */}
-          <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h2 className="text-base font-bold text-slate-900">
-              4. Preferred Date, Time &amp; Instructions
-            </h2>
+          {/* Step 04 */}
+          <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+            <div className="flex items-center gap-2.5">
+              <span className="font-mono text-xs font-medium text-brand-800 tabular-nums">
+                04
+              </span>
+              <h2 className="text-base font-medium text-zinc-900">
+                Preferred date, time, and instructions
+              </h2>
+            </div>
 
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <DateInput
@@ -487,7 +508,7 @@ export function BookingForm() {
                 <Textarea
                   label="Additional Instructions (Optional)"
                   rows={2}
-                  placeholder="Gate directions, parking notes, or ladder requirements..."
+                  placeholder="Gate directions, parking notes, or ladder requirements"
                   error={errors.instructions?.message}
                   {...register('instructions')}
                 />
@@ -498,25 +519,26 @@ export function BookingForm() {
 
         {/* Right: Review & Submit Card */}
         <aside className="lg:col-span-4">
-          <div className="sticky top-24 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+          <div className="sticky top-24 rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+            <div className="flex items-center gap-2 border-b border-zinc-900/5 pb-3">
               <ClipboardCheck
-                className="h-5 w-5 text-indigo-700"
+                className="h-4 w-4 text-zinc-500"
+                strokeWidth={1.5}
                 aria-hidden="true"
               />
-              <h2 className="text-base font-bold text-slate-900">
-                5. Review &amp; Submit
+              <h2 className="text-base font-medium text-zinc-900">
+                Review and submit
               </h2>
             </div>
 
             <dl className="mt-4 space-y-3 text-sm">
               <div>
-                <dt className="text-xs text-slate-500">Selected Provider</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-xs text-zinc-500">Selected provider</dt>
+                <dd className="mt-0.5 font-medium text-zinc-900">
                   {selectedProvider?.name || '—'}
                 </dd>
                 {selectedProvider && (
-                  <dd className="text-xs text-slate-500">
+                  <dd className="text-xs text-zinc-500">
                     {selectedProvider.neighborhood},{' '}
                     {selectedProvider.primaryCity}
                   </dd>
@@ -524,14 +546,14 @@ export function BookingForm() {
               </div>
 
               <div>
-                <dt className="text-xs text-slate-500">Selected Service</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-xs text-zinc-500">Selected service</dt>
+                <dd className="mt-0.5 font-medium text-zinc-900">
                   {selectedService?.title || '—'}
                 </dd>
               </div>
 
               <div>
-                <dt className="text-xs text-slate-500">Starting Rate</dt>
+                <dt className="text-xs text-zinc-500">Starting rate</dt>
                 <dd className="mt-0.5">
                   <PriceDisplay
                     amount={
@@ -549,8 +571,8 @@ export function BookingForm() {
                 </dd>
               </div>
 
-              <div className="flex items-center gap-2 border-t border-slate-100 pt-3 text-xs text-slate-600">
-                <Calendar className="h-4 w-4 text-indigo-600" aria-hidden="true" />
+              <div className="flex items-center gap-2 border-t border-zinc-900/5 pt-3 font-mono text-xs text-zinc-600 tabular-nums">
+                <Calendar className="h-4 w-4 text-zinc-400" strokeWidth={1.5} aria-hidden="true" />
                 <span>
                   {watch('preferredDate')} &bull; {watch('preferredTime')}
                 </span>
@@ -569,9 +591,8 @@ export function BookingForm() {
               </Button>
             </div>
 
-            <p className="mt-3 text-center text-xs text-slate-500">
-              Prototype mode: stored locally in browser LocalStorage. No payment
-              charged.
+            <p className="mt-3 text-center text-xs text-zinc-500">
+              Prototype mode: saved locally in browser LocalStorage.
             </p>
           </div>
         </aside>

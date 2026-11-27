@@ -10,61 +10,36 @@ export interface DashboardStatCardProps {
   className?: string;
 }
 
-const iconVariantStyles: Record<
-  NonNullable<DashboardStatCardProps['variant']>,
-  string
-> = {
-  default: 'bg-slate-100 text-slate-700',
-  primary: 'bg-indigo-50 text-indigo-700',
-  warning: 'bg-amber-50 text-amber-700',
-  success: 'bg-emerald-50 text-emerald-700',
-};
-
 export function DashboardStatCard({
   label,
   value,
-  icon,
   trend,
   helperText,
-  variant = 'default',
   className = '',
 }: DashboardStatCardProps) {
   return (
     <div
       className={[
-        'bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex items-start justify-between gap-4',
+        'bg-white border border-zinc-900/10 rounded-xl p-5 shadow-[0_1px_2px_rgba(24,24,27,0.04)] flex flex-col justify-between gap-2',
         className,
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      <div className="min-w-0">
-        <p className="text-xs font-medium text-slate-500">{label}</p>
-        <p className="mt-1.5 text-2xl font-bold text-slate-900 tracking-tight">
-          {value}
-        </p>
-        {(trend || helperText) && (
-          <div className="mt-1.5 flex items-center gap-2 text-xs">
-            {trend && (
-              <span className="font-medium text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
-                {trend}
-              </span>
-            )}
-            {helperText && (
-              <span className="text-slate-500 truncate">{helperText}</span>
-            )}
-          </div>
-        )}
-      </div>
-
-      {icon && (
-        <div
-          className={[
-            'w-10 h-10 rounded-xl flex items-center justify-center shrink-0',
-            iconVariantStyles[variant],
-          ].join(' ')}
-        >
-          {icon}
+      <p className="text-xs font-medium text-zinc-500">{label}</p>
+      <p className="text-2xl sm:text-3xl font-medium text-zinc-900 font-mono tabular-nums tracking-tight">
+        {value}
+      </p>
+      {(trend || helperText) && (
+        <div className="flex items-center gap-2 text-xs">
+          {trend && (
+            <span className="font-medium text-emerald-700 font-mono tabular-nums">
+              {trend}
+            </span>
+          )}
+          {helperText && (
+            <span className="text-zinc-500 truncate">{helperText}</span>
+          )}
         </div>
       )}
     </div>

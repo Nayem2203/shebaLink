@@ -1,16 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
     --brand-primary: #1e1b4b;
-    --brand-accent: #4f46e5;
-    --surface-bg: #f8fafc;
+    --brand-accent: #312e81;
+    --surface-canvas: #f7f6f2;
     --surface-card: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --border-color: #e2e8f0;
+    --surface-subtle: #efede7;
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
+    --border-hairline: rgba(24, 24, 27, 0.09);
+    --ease-unslop: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   html {
@@ -20,15 +27,24 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 min-h-screen overflow-x-hidden selection:bg-indigo-100 selection:text-indigo-900;
+    background-color: var(--surface-canvas);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    @apply min-h-screen overflow-x-hidden selection:bg-brand-100 selection:text-brand-900;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-slate-900;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-primary);
+    @apply font-semibold tracking-tight;
   }
 
   *:focus-visible {
-    @apply outline-none ring-2 ring-indigo-600 ring-offset-2 ring-offset-white;
+    @apply outline-none ring-2 ring-brand-700 ring-offset-2 ring-offset-white;
   }
 }
 
@@ -38,6 +54,24 @@
   }
 
   .card-surface {
-    @apply bg-white border border-slate-200 rounded-xl shadow-sm;
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-hairline);
+    box-shadow: 0 1px 2px rgba(24, 24, 27, 0.04);
+    @apply rounded-xl;
   }
+}
+
+@keyframes unslop-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: unslop-enter 320ms var(--ease-unslop) both;
 }

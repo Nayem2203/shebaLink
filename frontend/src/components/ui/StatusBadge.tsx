@@ -1,14 +1,4 @@
 import React from 'react';
-import {
-  Clock,
-  CheckCircle2,
-  XCircle,
-  Wrench,
-  Ban,
-  ShieldCheck,
-  ShieldAlert,
-  AlertCircle,
-} from 'lucide-react';
 import type {
   BookingStatus,
   VerificationStatus,
@@ -33,94 +23,94 @@ export interface StatusBadgeProps {
 interface StatusStyleConfig {
   label: string;
   classes: string;
-  icon: React.ComponentType<{ className?: string }>;
+  dotColor: string;
 }
 
 const statusMap: Record<BadgeStatusValue, StatusStyleConfig> = {
   Pending: {
     label: 'Pending',
-    classes: 'bg-amber-50 text-amber-800 border-amber-200',
-    icon: Clock,
+    classes: 'bg-amber-50/80 text-amber-900 border-amber-900/15',
+    dotColor: 'bg-amber-600',
   },
   Accepted: {
     label: 'Accepted',
-    classes: 'bg-blue-50 text-blue-800 border-blue-200',
-    icon: CheckCircle2,
+    classes: 'bg-sky-50/80 text-sky-900 border-sky-900/15',
+    dotColor: 'bg-sky-600',
   },
   'In Progress': {
     label: 'In Progress',
-    classes: 'bg-indigo-50 text-indigo-800 border-indigo-200',
-    icon: Wrench,
+    classes: 'bg-brand-50 text-brand-900 border-brand-900/15',
+    dotColor: 'bg-brand-700',
   },
   Completed: {
     label: 'Completed',
-    classes: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-    icon: CheckCircle2,
+    classes: 'bg-emerald-50/80 text-emerald-900 border-emerald-900/15',
+    dotColor: 'bg-emerald-600',
   },
   Rejected: {
     label: 'Rejected',
-    classes: 'bg-rose-50 text-rose-800 border-rose-200',
-    icon: XCircle,
+    classes: 'bg-rose-50/80 text-rose-900 border-rose-900/15',
+    dotColor: 'bg-rose-600',
   },
   Cancelled: {
     label: 'Cancelled',
-    classes: 'bg-slate-100 text-slate-700 border-slate-300',
-    icon: Ban,
+    classes: 'bg-surface-subtle text-zinc-700 border-zinc-900/10',
+    dotColor: 'bg-zinc-400',
   },
   verified: {
     label: 'Verified',
-    classes: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-    icon: ShieldCheck,
+    classes: 'bg-emerald-50/80 text-emerald-900 border-emerald-900/15',
+    dotColor: 'bg-emerald-600',
   },
   pending: {
     label: 'Pending Verification',
-    classes: 'bg-amber-50 text-amber-800 border-amber-200',
-    icon: Clock,
+    classes: 'bg-amber-50/80 text-amber-900 border-amber-900/15',
+    dotColor: 'bg-amber-600',
   },
   pending_verification: {
     label: 'Pending Verification',
-    classes: 'bg-amber-50 text-amber-800 border-amber-200',
-    icon: Clock,
+    classes: 'bg-amber-50/80 text-amber-900 border-amber-900/15',
+    dotColor: 'bg-amber-600',
   },
   unverified: {
     label: 'Unverified',
-    classes: 'bg-slate-100 text-slate-700 border-slate-300',
-    icon: ShieldAlert,
+    classes: 'bg-surface-subtle text-zinc-700 border-zinc-900/10',
+    dotColor: 'bg-zinc-400',
   },
   rejected_verification: {
     label: 'Verification Rejected',
-    classes: 'bg-rose-50 text-rose-800 border-rose-200',
-    icon: XCircle,
+    classes: 'bg-rose-50/80 text-rose-900 border-rose-900/15',
+    dotColor: 'bg-rose-600',
   },
   Open: {
     label: 'Open',
-    classes: 'bg-amber-50 text-amber-800 border-amber-200',
-    icon: AlertCircle,
+    classes: 'bg-amber-50/80 text-amber-900 border-amber-900/15',
+    dotColor: 'bg-amber-600',
   },
   open: {
     label: 'Open',
-    classes: 'bg-amber-50 text-amber-800 border-amber-200',
-    icon: AlertCircle,
+    classes: 'bg-amber-50/80 text-amber-900 border-amber-900/15',
+    dotColor: 'bg-amber-600',
   },
   'In Review': {
     label: 'In Review',
-    classes: 'bg-blue-50 text-blue-800 border-blue-200',
-    icon: Clock,
+    classes: 'bg-sky-50/80 text-sky-900 border-sky-900/15',
+    dotColor: 'bg-sky-600',
   },
   Resolved: {
     label: 'Resolved',
-    classes: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-    icon: CheckCircle2,
+    classes: 'bg-emerald-50/80 text-emerald-900 border-emerald-900/15',
+    dotColor: 'bg-emerald-600',
   },
   resolved: {
     label: 'Resolved',
-    classes: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-    icon: CheckCircle2,
+    classes: 'bg-emerald-50/80 text-emerald-900 border-emerald-900/15',
+    dotColor: 'bg-emerald-600',
   },
   Dismissed: {
     label: 'Dismissed',
-    classes: 'bg-slate-100 text-slate-700 border-slate-300',
-    icon: Ban,
+    classes: 'bg-surface-subtle text-zinc-700 border-zinc-900/10',
+    dotColor: 'bg-zinc-400',
   },
 };
 
@@ -131,24 +121,23 @@ export function StatusBadge({
 }: StatusBadgeProps) {
   const config = statusMap[status] ?? {
     label: String(status),
-    classes: 'bg-slate-100 text-slate-700 border-slate-300',
-    icon: AlertCircle,
+    classes: 'bg-surface-subtle text-zinc-700 border-zinc-900/10',
+    dotColor: 'bg-zinc-400',
   };
-  const Icon = config.icon;
 
   return (
     <span
       className={[
-        'inline-flex items-center font-medium border rounded-full whitespace-nowrap',
-        size === 'sm' ? 'px-2 py-0.5 text-xs gap-1' : 'px-2.5 py-1 text-xs gap-1.5',
+        'inline-flex items-center font-medium border rounded-md whitespace-nowrap',
+        size === 'sm' ? 'px-2 py-0.5 text-xs gap-1.5' : 'px-2.5 py-1 text-xs gap-1.5',
         config.classes,
         className,
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      <Icon
-        className={size === 'sm' ? 'w-3 h-3 shrink-0' : 'w-3.5 h-3.5 shrink-0'}
+      <span
+        className={['w-1.5 h-1.5 rounded-full shrink-0', config.dotColor].join(' ')}
         aria-hidden="true"
       />
       <span>{config.label}</span>

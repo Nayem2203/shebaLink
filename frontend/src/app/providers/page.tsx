@@ -4,8 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ShieldCheck, SlidersHorizontal } from 'lucide-react';
 import { SharedLayout } from '@/components/layout/SharedLayout';
-import { Select } from '@/components/ui';
-import { EmptyState } from '@/components/ui';
+import { EmptyState, Select } from '@/components/ui';
 import { PageHeader, ProviderCard } from '@/components/shared';
 import { STORAGE_CUSTOM_EVENT_NAME } from '@/lib/patterns/ObserverPattern';
 import { searchAndFilterProviders } from '@/services/discoveryService';
@@ -57,16 +56,16 @@ export default function ProvidersDirectoryPage() {
           actions={
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 shadow-sm hover:bg-slate-50"
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-zinc-900/15 bg-white px-4 text-xs font-medium text-zinc-800 shadow-[0_1px_2px_rgba(24,24,27,0.04)] transition-colors duration-150 hover:bg-surface-hover"
             >
-              <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Advanced Search &amp; Filters</span>
+              <SlidersHorizontal className="h-3.5 w-3.5 text-zinc-500" strokeWidth={1.5} aria-hidden="true" />
+              <span>Advanced Search</span>
             </Link>
           }
         />
 
         {/* Quick Filter Bar */}
-        <div className="mt-6 flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-6 flex flex-col gap-3 rounded-xl border border-zinc-900/10 bg-white p-4 shadow-[0_1px_2px_rgba(24,24,27,0.04)] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-2">
             {CITY_TABS.map((city) => {
               const active = selectedCity === city;
@@ -75,10 +74,10 @@ export default function ProvidersDirectoryPage() {
                   key={city}
                   type="button"
                   onClick={() => setSelectedCity(city)}
-                  className={`rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`h-8 rounded-lg border px-3 text-xs font-medium transition-colors duration-150 ${
                     active
-                      ? 'border-indigo-900 bg-indigo-900 text-white'
-                      : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                      ? 'border-brand-900 bg-brand-900 text-white'
+                      : 'border-zinc-900/10 bg-surface-canvas text-zinc-700 hover:bg-surface-subtle'
                   }`}
                 >
                   {city === 'All' ? 'All Cities' : city}
@@ -86,20 +85,20 @@ export default function ProvidersDirectoryPage() {
               );
             })}
 
-            <label className="ml-1 inline-flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700">
+            <label className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-lg border border-zinc-900/10 bg-surface-canvas px-3 text-xs font-medium text-zinc-700">
               <input
                 type="checkbox"
                 checked={verifiedOnly}
                 onChange={(e) => setVerifiedOnly(e.target.checked)}
-                className="h-3.5 w-3.5 rounded border-slate-300 text-indigo-900 focus:ring-indigo-600"
+                className="h-3.5 w-3.5 rounded border-zinc-300 text-brand-900 focus:ring-brand-700"
               />
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+              <ShieldCheck className="h-3.5 w-3.5 text-zinc-500" strokeWidth={1.5} aria-hidden="true" />
               <span>Verified Only</span>
             </label>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs font-medium text-slate-500 whitespace-nowrap">
+            <span className="font-mono text-xs text-zinc-500 tabular-nums whitespace-nowrap">
               {providers.length} {providers.length === 1 ? 'provider' : 'providers'}
             </span>
             <div className="w-48">

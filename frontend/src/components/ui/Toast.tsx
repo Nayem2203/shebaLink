@@ -7,7 +7,7 @@ import React, {
   useState,
   ReactNode,
 } from 'react';
-import { CheckCircle2, AlertCircle, Info, AlertTriangle, X } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Info, AlertTriangle, X, type LucideIcon } from 'lucide-react';
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
@@ -39,27 +39,27 @@ const toastStyleMap: Record<
   {
     container: string;
     iconColor: string;
-    Icon: React.ComponentType<{ className?: string }>;
+    Icon: LucideIcon;
   }
 > = {
   success: {
-    container: 'bg-white border-emerald-200 text-slate-900',
-    iconColor: 'text-emerald-600',
+    container: 'bg-white border-emerald-900/15 text-zinc-900',
+    iconColor: 'text-emerald-700',
     Icon: CheckCircle2,
   },
   error: {
-    container: 'bg-white border-rose-200 text-slate-900',
-    iconColor: 'text-rose-600',
+    container: 'bg-white border-rose-900/15 text-zinc-900',
+    iconColor: 'text-rose-700',
     Icon: AlertCircle,
   },
   warning: {
-    container: 'bg-white border-amber-200 text-slate-900',
-    iconColor: 'text-amber-600',
+    container: 'bg-white border-amber-900/15 text-zinc-900',
+    iconColor: 'text-amber-700',
     Icon: AlertTriangle,
   },
   info: {
-    container: 'bg-white border-indigo-200 text-slate-900',
-    iconColor: 'text-indigo-600',
+    container: 'bg-white border-zinc-900/15 text-zinc-900',
+    iconColor: 'text-brand-800',
     Icon: Info,
   },
 };
@@ -79,15 +79,18 @@ export function Toast({
       role="status"
       aria-live="polite"
       className={[
-        'pointer-events-auto w-full max-w-sm rounded-xl border p-4 shadow-md flex items-start gap-3 transition-all',
+        'pointer-events-auto w-full max-w-sm rounded-xl border p-4 shadow-[0_8px_24px_rgba(24,24,27,0.08)] flex items-start gap-3 animate-enter transition-opacity duration-150',
         style.container,
       ].join(' ')}
     >
-      <Icon className={['w-5 h-5 shrink-0 mt-0.5', style.iconColor].join(' ')} />
+      <Icon
+        className={['w-4 h-4 shrink-0 mt-0.5', style.iconColor].join(' ')}
+        strokeWidth={1.5}
+      />
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-slate-900">{toast.title}</p>
+        <p className="text-sm font-medium text-zinc-900">{toast.title}</p>
         {toast.message && (
-          <p className="mt-0.5 text-xs text-slate-600 leading-relaxed">
+          <p className="mt-1 text-xs text-zinc-600 leading-relaxed">
             {toast.message}
           </p>
         )}
@@ -96,9 +99,9 @@ export function Toast({
         type="button"
         onClick={() => onDismiss(toast.id)}
         aria-label="Dismiss notification"
-        className="text-slate-400 hover:text-slate-600 rounded p-0.5"
+        className="text-zinc-400 hover:text-zinc-700 rounded p-0.5 transition-colors duration-150"
       >
-        <X className="w-4 h-4" />
+        <X className="w-4 h-4" strokeWidth={1.5} />
       </button>
     </div>
   );

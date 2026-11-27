@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { UserCheck, Wrench, ShieldAlert, ChevronDown, Sparkles } from 'lucide-react';
+import { User, Wrench, Shield, ChevronDown, type LucideIcon } from 'lucide-react';
 import type { UserRole } from '@/types';
 import { useRole, DEMO_USERS, getDashboardPathForRole } from '@/context/RoleContext';
 
@@ -10,29 +10,29 @@ const ROLE_OPTIONS: {
   role: UserRole;
   label: string;
   shortDesc: string;
-  badgeColor: string;
-  icon: React.ComponentType<{ className?: string }>;
+  dotColor: string;
+  icon: LucideIcon;
 }[] = [
   {
     role: 'customer',
     label: 'Customer',
-    shortDesc: 'Browse services, book & review',
-    badgeColor: 'bg-blue-100 text-blue-800 border-blue-200',
-    icon: UserCheck,
+    shortDesc: 'Browse services, book and review',
+    dotColor: 'bg-sky-600',
+    icon: User,
   },
   {
     role: 'provider',
     label: 'Provider',
-    shortDesc: 'Accept jobs, update status & pricing',
-    badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+    shortDesc: 'Accept jobs, update status and rates',
+    dotColor: 'bg-emerald-600',
     icon: Wrench,
   },
   {
     role: 'admin',
     label: 'Admin',
-    shortDesc: 'Verify providers, categories & complaints',
-    badgeColor: 'bg-amber-100 text-amber-800 border-amber-200',
-    icon: ShieldAlert,
+    shortDesc: 'Verify providers and moderate complaints',
+    dotColor: 'bg-amber-600',
+    icon: Shield,
   },
 ];
 
@@ -55,7 +55,6 @@ export function RoleSwitcher({
 
   const activeConfig =
     ROLE_OPTIONS.find((item) => item.role === currentRole) ?? ROLE_OPTIONS[0];
-  const ActiveIcon = activeConfig.icon;
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -84,26 +83,28 @@ export function RoleSwitcher({
         onClick={() => setIsOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-label={`Demo Mode Role Switcher, currently ${activeConfig.label}`}
-        className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-800 shadow-sm transition-colors hover:border-indigo-300 hover:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-1"
+        aria-label={`Demo mode role switcher, currently ${activeConfig.label}`}
+        className="inline-flex h-9 items-center gap-2 rounded-lg border border-zinc-900/15 bg-white px-3 text-xs font-medium text-zinc-800 shadow-[0_1px_2px_rgba(24,24,27,0.04)] transition-colors duration-150 hover:bg-surface-hover focus:outline-none focus:ring-2 focus:ring-brand-700/20"
       >
-        <span className="inline-flex items-center gap-1 rounded bg-indigo-900 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
-          <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
-          Demo Mode
-        </span>
-        <span className="inline-flex items-center gap-1.5 font-semibold text-slate-900">
-          <ActiveIcon className="h-3.5 w-3.5 text-indigo-700" aria-hidden="true" />
-          <span>{activeConfig.label}</span>
+        <span
+          className={`h-1.5 w-1.5 rounded-full shrink-0 ${activeConfig.dotColor}`}
+          aria-hidden="true"
+        />
+        <span className="text-zinc-500">Demo:</span>
+        <span className="font-medium text-zinc-900">
+          {activeConfig.label}
           {!compact && (
-            <span className="hidden text-slate-500 sm:inline">
+            <span className="hidden text-zinc-500 font-normal sm:inline">
+              {' '}
               ({currentUser.name.split(' ')[0]})
             </span>
           )}
         </span>
         <ChevronDown
-          className={`h-3.5 w-3.5 text-slate-500 transition-transform ${
+          className={`h-3.5 w-3.5 text-zinc-400 transition-transform duration-150 ${
             isOpen ? 'rotate-180' : ''
           }`}
+          strokeWidth={1.5}
           aria-hidden="true"
         />
       </button>
@@ -112,14 +113,14 @@ export function RoleSwitcher({
         <div
           role="listbox"
           aria-label="Select demo role"
-          className="absolute right-0 z-50 mt-2 w-72 origin-top-right rounded-xl border border-slate-200 bg-white p-2 shadow-lg ring-1 ring-black/5"
+          className="absolute right-0 z-50 mt-2 w-72 origin-top-right rounded-xl border border-zinc-900/10 bg-white p-2 shadow-[0_8px_24px_rgba(24,24,27,0.08)] animate-enter"
         >
-          <div className="mb-1.5 border-b border-slate-100 px-2.5 pb-2 pt-1">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-indigo-900">
-              Prototype Role Switcher
+          <div className="mb-1 border-b border-zinc-900/5 px-2.5 pb-2 pt-1">
+            <p className="text-xs font-medium text-zinc-900">
+              Demo role switcher
             </p>
-            <p className="text-xs text-slate-500">
-              Switch persona to test Customer, Provider &amp; Admin workflows.
+            <p className="text-xs text-zinc-500">
+              Preview Customer, Provider, or Admin workflows.
             </p>
           </div>
 
@@ -135,46 +136,45 @@ export function RoleSwitcher({
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelectRole(option.role)}
-                  className={`flex w-full items-start gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors ${
+                  className={`flex w-full items-start gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors duration-150 ${
                     isSelected
-                      ? 'bg-indigo-50/90 text-indigo-950 ring-1 ring-indigo-200'
-                      : 'text-slate-700 hover:bg-slate-50'
+                      ? 'bg-surface-subtle text-zinc-900'
+                      : 'text-zinc-700 hover:bg-surface-hover'
                   }`}
                 >
-                  <div
-                    className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border ${option.badgeColor}`}
-                  >
-                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-zinc-900/10 bg-white text-zinc-600">
+                    <Icon className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="text-xs font-semibold text-slate-900">
-                        {option.label} Demo
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-medium text-zinc-900">
+                        {option.label}
                       </span>
                       {isSelected && (
-                        <span className="rounded-full bg-indigo-900 px-2 py-0.5 text-[10px] font-semibold text-white">
+                        <span className="inline-flex items-center gap-1 text-xs font-medium text-brand-800">
+                          <span className={`h-1.5 w-1.5 rounded-full ${option.dotColor}`} />
                           Active
                         </span>
                       )}
                     </div>
-                    <p className="truncate text-xs font-medium text-slate-600">
+                    <p className="truncate text-xs text-zinc-600">
                       {demoPerson.name}
                     </p>
-                    <p className="text-[11px] text-slate-500">{option.shortDesc}</p>
+                    <p className="text-xs text-zinc-500">{option.shortDesc}</p>
                   </div>
                 </button>
               );
             })}
           </div>
 
-          <div className="mt-2 border-t border-slate-100 pt-2">
+          <div className="mt-2 border-t border-zinc-900/5 pt-2">
             <button
               type="button"
               onClick={() => {
                 setIsOpen(false);
                 router.push(getDashboardPathForRole(currentRole));
               }}
-              className="flex w-full items-center justify-center rounded-lg bg-indigo-900 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-indigo-800"
+              className="flex h-8 w-full items-center justify-center rounded-lg bg-brand-900 px-3 text-xs font-medium text-white transition-colors duration-150 hover:bg-brand-800"
             >
               Open {activeConfig.label} Dashboard
             </button>

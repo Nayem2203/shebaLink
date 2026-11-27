@@ -44,19 +44,20 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           className={
             hideLabel
               ? 'sr-only'
-              : 'block text-sm font-medium text-slate-700 mb-1.5'
+              : 'block text-sm font-medium text-zinc-800 mb-1.5'
           }
         >
           {label}
           {required && (
-            <span className="text-rose-600 ml-0.5" aria-hidden="true">
+            <span className="text-rose-600 ml-1" aria-hidden="true">
               *
             </span>
           )}
         </label>
         <div className="relative flex items-center">
           <Calendar
-            className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none"
+            className="w-4 h-4 text-zinc-400 absolute left-3 pointer-events-none"
+            strokeWidth={1.5}
             aria-hidden="true"
           />
           <input
@@ -72,12 +73,12 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
               error ? errorId : helperText ? helperId : undefined
             }
             className={[
-              'w-full h-10 rounded-lg border bg-white pl-9 pr-3.5 text-sm text-slate-900 transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600',
-              'disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed',
+              'w-full h-10 rounded-lg border bg-white pl-9 pr-3 text-sm text-zinc-900 font-mono tabular-nums transition-[border-color,box-shadow] duration-150 ease-ease',
+              'focus:outline-none focus:ring-2 focus:ring-brand-700/20 focus:border-brand-700',
+              'disabled:bg-surface-subtle disabled:text-zinc-500 disabled:cursor-not-allowed',
               error
-                ? 'border-rose-500 focus:ring-rose-500 focus:border-rose-500'
-                : 'border-slate-300 hover:border-slate-400',
+                ? 'border-rose-500 focus:ring-rose-500/20 focus:border-rose-500'
+                : 'border-zinc-900/15 hover:border-zinc-900/25',
               className,
             ]
               .filter(Boolean)
@@ -86,12 +87,12 @@ export const DateInput = forwardRef<HTMLInputElement, DateInputProps>(
           />
         </div>
         {error && (
-          <p id={errorId} className="mt-1.5 text-xs text-rose-600 font-medium" role="alert">
+          <p id={errorId} className="mt-1.5 text-xs text-rose-700 font-medium" role="alert">
             {error}
           </p>
         )}
         {!error && helperText && (
-          <p id={helperId} className="mt-1.5 text-xs text-slate-500">
+          <p id={helperId} className="mt-1.5 text-xs text-zinc-500">
             {helperText}
           </p>
         )}
