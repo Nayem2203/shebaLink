@@ -1,0 +1,76 @@
+import type { Complaint } from '@/types';
+
+export const INITIAL_COMPLAINTS: Complaint[] = [
+  {
+    id: 'cmp-001',
+    bookingId: 'bk-016',
+    customerId: 'cust-001',
+    providerId: 'prov-007',
+    subject: 'Arrival delayed by 45 minutes without prior call',
+    description:
+      'The painting crew reached Padma Residential 45 minutes after the confirmed 10:00 AM slot, though the final wall coating was satisfactory.',
+    status: 'Open',
+    customerName: 'Tariqul Islam',
+    providerName: 'Tariq Mahmud',
+    createdAt: '2026-11-20T09:00:00.000Z',
+    updatedAt: '2026-11-20T09:00:00.000Z',
+  },
+  {
+    id: 'cmp-002',
+    bookingId: 'bk-007',
+    customerId: 'cust-005',
+    providerId: 'prov-004',
+    subject: 'Spare relay part billed separately from inspection fee',
+    description:
+      'Customer requested clearer upfront breakdown between ৳650 diagnostic visit and replacement relay cost.',
+    status: 'In Review',
+    customerName: 'Mehedi Hasan',
+    providerName: 'Mizanur Rahman',
+    createdAt: '2026-11-11T10:30:00.000Z',
+    updatedAt: '2026-11-12T11:00:00.000Z',
+  },
+  {
+    id: 'cmp-003',
+    bookingId: 'bk-013',
+    customerId: 'cust-003',
+    providerId: 'prov-014',
+    subject: 'Water left around laundry area after drain test',
+    description:
+      'Drain pipe was unclogged successfully, but customer asked for better floor cleanup afterwards.',
+    status: 'Resolved',
+    customerName: 'Tanvir Ahmed',
+    providerName: 'Sajjad Hossain',
+    resolutionNotes: 'Provider acknowledged feedback and offered complimentary follow-up check.',
+    createdAt: '2026-11-16T14:00:00.000Z',
+    updatedAt: '2026-11-17T16:00:00.000Z',
+  },
+  {
+    id: 'cmp-004',
+    bookingId: 'bk-022',
+    customerId: 'cust-004',
+    providerId: 'prov-015',
+    subject: 'Requested roadside service outside provider city',
+    description:
+      'Customer attempted booking Chattogram provider from Rajshahi; booking was rejected.',
+    status: 'Dismissed',
+    customerName: 'Sabina Yasmin',
+    providerName: 'Imran Chowdhury',
+    resolutionNotes: 'Provider service area is Chattogram only; city filter guidance updated.',
+    createdAt: '2026-11-24T17:00:00.000Z',
+    updatedAt: '2026-11-25T09:30:00.000Z',
+  },
+  {
+    id: 'cmp-005',
+    bookingId: 'bk-005',
+    customerId: 'cust-004',
+    providerId: 'prov-006',
+    subject: 'Verify invoice copy for deep cleaning booking',
+    description:
+      'Customer requested a printable summary receipt showing quoted BDT 2,400 total.',
+    status: 'Open',
+    customerName: 'Sabina Yasmin',
+    providerName: 'Farhana Akter',
+    createdAt: '2026-11-19T12:15:00.000Z',
+    updatedAt: '2026-11-19T12:15:00.000Z',
+  },
+];
