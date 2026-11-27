@@ -170,7 +170,7 @@ export function ProviderCard({
             </Button>
           ) : (
             <Link
-              href={`/providers/${provider.id}?book=true`}
+              href={`/book?provider=${provider.id}`}
               className="inline-flex items-center justify-center h-8 px-3 text-xs font-medium rounded-lg bg-indigo-900 text-white hover:bg-indigo-800 shadow-sm transition-colors"
             >
               Request Service
