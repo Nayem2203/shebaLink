@@ -1,0 +1,1483 @@
+{
+  "components": {
+    "schemas": {
+      "AdminOverviewResponse": {
+        "properties": {
+          "active_categories": {
+            "title": "Active Categories",
+            "type": "integer"
+          },
+          "completed_bookings": {
+            "title": "Completed Bookings",
+            "type": "integer"
+          },
+          "pending_bookings": {
+            "title": "Pending Bookings",
+            "type": "integer"
+          },
+          "total_bookings": {
+            "title": "Total Bookings",
+            "type": "integer"
+          },
+          "total_categories": {
+            "title": "Total Categories",
+            "type": "integer"
+          },
+          "total_providers": {
+            "title": "Total Providers",
+            "type": "integer"
+          },
+          "total_revenue_bdt": {
+            "title": "Total Revenue Bdt",
+            "type": "integer"
+          },
+          "total_reviews": {
+            "title": "Total Reviews",
+            "type": "integer"
+          },
+          "verified_providers": {
+            "title": "Verified Providers",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total_categories",
+          "active_categories",
+          "total_providers",
+          "verified_providers",
+          "total_bookings",
+          "pending_bookings",
+          "completed_bookings",
+          "total_reviews",
+          "total_revenue_bdt"
+        ],
+        "title": "AdminOverviewResponse",
+        "type": "object"
+      },
+      "BookingResponse": {
+        "properties": {
+          "additional_instructions": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Additional Instructions"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string"
+          },
+          "customer_id": {
+            "title": "Customer Id",
+            "type": "string"
+          },
+          "customer_phone": {
+            "title": "Customer Phone",
+            "type": "string"
+          },
+          "id": {
+            "examples": [
+              "bk-001"
+            ],
+            "title": "Id",
+            "type": "string"
+          },
+          "notification_dispatched": {
+            "default": true,
+            "title": "Notification Dispatched",
+            "type": "boolean"
+          },
+          "preferred_at": {
+            "title": "Preferred At",
+            "type": "string"
+          },
+          "problem_description": {
+            "title": "Problem Description",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "provider_service_id": {
+            "title": "Provider Service Id",
+            "type": "string"
+          },
+          "quoted_price_bdt": {
+            "minimum": 0.0,
+            "title": "Quoted Price Bdt",
+            "type": "integer"
+          },
+          "service_address": {
+            "title": "Service Address",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BookingStatus"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "customer_id",
+          "provider_id",
+          "provider_service_id",
+          "problem_description",
+          "service_address",
+          "customer_phone",
+          "preferred_at",
+          "status",
+          "quoted_price_bdt",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "BookingResponse",
+        "type": "object"
+      },
+      "BookingStatus": {
+        "enum": [
+          "Pending",
+          "Accepted",
+          "Rejected",
+          "In Progress",
+          "Completed",
+          "Cancelled"
+        ],
+        "title": "BookingStatus",
+        "type": "string"
+      },
+      "BookingStatusUpdateSchema": {
+        "properties": {
+          "actor_role": {
+            "$ref": "#/components/schemas/UserRole",
+            "default": "provider",
+            "description": "Role executing the status transition.",
+            "examples": [
+              "provider"
+            ]
+          },
+          "status": {
+            "$ref": "#/components/schemas/BookingStatus",
+            "description": "Target booking lifecycle status.",
+            "examples": [
+              "Accepted"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "BookingStatusUpdateSchema",
+        "type": "object"
+      },
+      "CategoryResponse": {
+        "properties": {
+          "active": {
+            "default": true,
+            "title": "Active",
+            "type": "boolean"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "group": {
+            "examples": [
+              "home-repair"
+            ],
+            "title": "Group",
+            "type": "string"
+          },
+          "id": {
+            "examples": [
+              "cat-electrician"
+            ],
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "examples": [
+              "Electrician"
+            ],
+            "title": "Name",
+            "type": "string"
+          },
+          "provider_count": {
+            "minimum": 0.0,
+            "title": "Provider Count",
+            "type": "integer"
+          },
+          "slug": {
+            "examples": [
+              "electrician"
+            ],
+            "title": "Slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "group",
+          "description",
+          "provider_count"
+        ],
+        "title": "CategoryResponse",
+        "type": "object"
+      },
+      "CreateBookingSchema": {
+        "properties": {
+          "additional_instructions": {
+            "anyOf": [
+              {
+                "maxLength": 300,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional arrival notes or gate instructions.",
+            "examples": [
+              "Call 10 minutes before arrival at Gate 2."
+            ],
+            "title": "Additional Instructions"
+          },
+          "customer_id": {
+            "default": "cust-001",
+            "description": "Customer account ID submitting the service request.",
+            "examples": [
+              "cust-001"
+            ],
+            "title": "Customer Id",
+            "type": "string"
+          },
+          "customer_phone": {
+            "default": "+8801711223344",
+            "description": "Valid Bangladesh mobile number (+8801XXXXXXXXX or 01XXXXXXXXX).",
+            "examples": [
+              "+8801711223344"
+            ],
+            "pattern": "^(?:\\+8801|01)[3-9]\\d{8}$",
+            "title": "Customer Phone",
+            "type": "string"
+          },
+          "preferred_at": {
+            "description": "Requested service date and window (ISO date or timestamp).",
+            "examples": [
+              "2026-12-01T10:30:00"
+            ],
+            "title": "Preferred At",
+            "type": "string"
+          },
+          "problem_description": {
+            "description": "Detailed description of the household or maintenance issue.",
+            "examples": [
+              "Main circuit breaker trips whenever the kitchen oven starts."
+            ],
+            "maxLength": 600,
+            "minLength": 10,
+            "title": "Problem Description",
+            "type": "string"
+          },
+          "problem_image_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional uploaded photo URL of the issue.",
+            "title": "Problem Image Url"
+          },
+          "provider_id": {
+            "description": "Target provider identifier (e.g., 'prov-001').",
+            "examples": [
+              "prov-001"
+            ],
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "provider_service_id": {
+            "description": "Selected service package ID offered by the provider.",
+            "examples": [
+              "srv-001"
+            ],
+            "title": "Provider Service Id",
+            "type": "string"
+          },
+          "service_address": {
+            "description": "Full service location address in Bangladesh.",
+            "examples": [
+              "House 24, Padma Residential Area, Boalia, Rajshahi"
+            ],
+            "maxLength": 250,
+            "minLength": 5,
+            "title": "Service Address",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_id",
+          "provider_service_id",
+          "problem_description",
+          "service_address",
+          "preferred_at"
+        ],
+        "title": "CreateBookingSchema",
+        "type": "object"
+      },
+      "CreateReviewSchema": {
+        "properties": {
+          "comment": {
+            "description": "Customer review comment for the completed service.",
+            "examples": [
+              "Arrived on time and fixed the switchboard neatly."
+            ],
+            "maxLength": 500,
+            "minLength": 5,
+            "title": "Comment",
+            "type": "string"
+          },
+          "customer_id": {
+            "default": "cust-001",
+            "description": "Customer ID submitting the review.",
+            "examples": [
+              "cust-001"
+            ],
+            "title": "Customer Id",
+            "type": "string"
+          },
+          "rating": {
+            "description": "Star rating between 1 and 5.",
+            "examples": [
+              5
+            ],
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Rating",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "rating",
+          "comment"
+        ],
+        "title": "CreateReviewSchema",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "detail": {
+            "examples": [
+              "Requested booking was not found."
+            ],
+            "title": "Detail",
+            "type": "string"
+          }
+        },
+        "required": [
+          "detail"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "properties": {
+          "database": {
+            "examples": [
+              "in-memory-repository (postgresql-ready)"
+            ],
+            "title": "Database",
+            "type": "string"
+          },
+          "service": {
+            "examples": [
+              "ShebaLink Local Services API"
+            ],
+            "title": "Service",
+            "type": "string"
+          },
+          "status": {
+            "examples": [
+              "ok"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "examples": [
+              "1.0.0"
+            ],
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "service",
+          "version",
+          "database"
+        ],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "ProviderResponse": {
+        "properties": {
+          "experience_years": {
+            "examples": [
+              5
+            ],
+            "minimum": 0.0,
+            "title": "Experience Years",
+            "type": "integer"
+          },
+          "id": {
+            "examples": [
+              "prov-001"
+            ],
+            "title": "Id",
+            "type": "string"
+          },
+          "is_available": {
+            "default": true,
+            "title": "Is Available",
+            "type": "boolean"
+          },
+          "name": {
+            "examples": [
+              "Rahim Uddin"
+            ],
+            "title": "Name",
+            "type": "string"
+          },
+          "neighborhood": {
+            "examples": [
+              "Boalia"
+            ],
+            "title": "Neighborhood",
+            "type": "string"
+          },
+          "phone": {
+            "examples": [
+              "+8801711001101"
+            ],
+            "title": "Phone",
+            "type": "string"
+          },
+          "primary_category_name": {
+            "examples": [
+              "Electrician"
+            ],
+            "title": "Primary Category Name",
+            "type": "string"
+          },
+          "primary_category_slug": {
+            "examples": [
+              "electrician"
+            ],
+            "title": "Primary Category Slug",
+            "type": "string"
+          },
+          "primary_city": {
+            "examples": [
+              "Rajshahi"
+            ],
+            "title": "Primary City",
+            "type": "string"
+          },
+          "rating": {
+            "examples": [
+              4.8
+            ],
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Rating",
+            "type": "number"
+          },
+          "review_count": {
+            "examples": [
+              42
+            ],
+            "minimum": 0.0,
+            "title": "Review Count",
+            "type": "integer"
+          },
+          "starting_price_bdt": {
+            "examples": [
+              500
+            ],
+            "minimum": 0.0,
+            "title": "Starting Price Bdt",
+            "type": "integer"
+          },
+          "title": {
+            "examples": [
+              "Electrician"
+            ],
+            "title": "Title",
+            "type": "string"
+          },
+          "verified_status": {
+            "$ref": "#/components/schemas/VerificationStatus",
+            "default": "verified"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "title",
+          "primary_category_slug",
+          "primary_category_name",
+          "primary_city",
+          "neighborhood",
+          "experience_years",
+          "rating",
+          "review_count",
+          "starting_price_bdt",
+          "phone"
+        ],
+        "title": "ProviderResponse",
+        "type": "object"
+      },
+      "ReviewResponse": {
+        "properties": {
+          "booking_id": {
+            "title": "Booking Id",
+            "type": "string"
+          },
+          "comment": {
+            "title": "Comment",
+            "type": "string"
+          },
+          "created_at": {
+            "title": "Created At",
+            "type": "string"
+          },
+          "customer_id": {
+            "title": "Customer Id",
+            "type": "string"
+          },
+          "id": {
+            "examples": [
+              "rev-101"
+            ],
+            "title": "Id",
+            "type": "string"
+          },
+          "provider_id": {
+            "title": "Provider Id",
+            "type": "string"
+          },
+          "rating": {
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Rating",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "booking_id",
+          "customer_id",
+          "provider_id",
+          "rating",
+          "comment",
+          "created_at"
+        ],
+        "title": "ReviewResponse",
+        "type": "object"
+      },
+      "UserRole": {
+        "enum": [
+          "customer",
+          "provider",
+          "admin"
+        ],
+        "title": "UserRole",
+        "type": "string"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "VerificationStatus": {
+        "enum": [
+          "verified",
+          "pending",
+          "unverified"
+        ],
+        "title": "VerificationStatus",
+        "type": "string"
+      }
+    }
+  },
+  "info": {
+    "contact": {
+      "name": "ShebaLink CSE 3206 Engineering",
+      "url": "https://github.com/Nayem2203/shebaLink"
+    },
+    "description": "REST API & OpenAPI/Swagger specification for **ShebaLink**, a Bangladesh-first local service discovery and booking marketplace. Uses Pydantic validation, centralized booking state-machine rules, and PostgreSQL-aligned repository/gateway interfaces.",
+    "license": {
+      "name": "MIT License (Academic Prototype)"
+    },
+    "summary": "OpenAPI 3.1 contract and REST reference implementation for ShebaLink (CSE 3206).",
+    "title": "ShebaLink Local Services API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Root  Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "API root metadata",
+        "tags": [
+          "System"
+        ]
+      }
+    },
+    "/api/v1/admin/overview": {
+      "get": {
+        "operationId": "admin_overview_api_v1_admin_overview_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminOverviewResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Platform KPI summary for Admin dashboard",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/bookings": {
+      "get": {
+        "description": "List service bookings with optional lifecycle status filtering.",
+        "operationId": "list_bookings_api_v1_bookings_get",
+        "parameters": [
+          {
+            "description": "Filter bookings by lifecycle status.",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/BookingStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter bookings by lifecycle status.",
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/BookingResponse"
+                  },
+                  "title": "Response List Bookings Api V1 Bookings Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List bookings",
+        "tags": [
+          "Bookings"
+        ]
+      },
+      "post": {
+        "description": "Validate booking inputs via Pydantic and notify the assigned provider via NotificationGateway.",
+        "operationId": "create_booking_api_v1_bookings_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookingSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Target provider not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create a new service booking",
+        "tags": [
+          "Bookings"
+        ]
+      }
+    },
+    "/api/v1/bookings/{booking_id}": {
+      "get": {
+        "operationId": "get_booking_api_v1_bookings__booking_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "booking_id",
+            "required": true,
+            "schema": {
+              "title": "Booking Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Booking not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get booking details",
+        "tags": [
+          "Bookings"
+        ]
+      }
+    },
+    "/api/v1/bookings/{booking_id}/cancel": {
+      "post": {
+        "operationId": "cancel_booking_api_v1_bookings__booking_id__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "booking_id",
+            "required": true,
+            "schema": {
+              "title": "Booking Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Booking cannot be cancelled"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Booking not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancel an eligible Pending booking (Customer)",
+        "tags": [
+          "Bookings"
+        ]
+      }
+    },
+    "/api/v1/bookings/{booking_id}/reviews": {
+      "post": {
+        "operationId": "create_review_api_v1_bookings__booking_id__reviews_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "booking_id",
+            "required": true,
+            "schema": {
+              "title": "Booking Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReviewSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Booking is not Completed or already reviewed"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Booking not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Submit a review for a completed booking",
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/api/v1/bookings/{booking_id}/status": {
+      "patch": {
+        "description": "Enforces centralized booking state transitions and role constraints before persisting.",
+        "operationId": "update_booking_status_api_v1_bookings__booking_id__status_patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "booking_id",
+            "required": true,
+            "schema": {
+              "title": "Booking Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingStatusUpdateSchema"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Invalid booking status transition"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Booking not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Transition booking lifecycle status",
+        "tags": [
+          "Bookings"
+        ]
+      }
+    },
+    "/api/v1/categories": {
+      "get": {
+        "description": "Return Bangladesh household, repair, and delivery service categories.",
+        "operationId": "list_categories_api_v1_categories_get",
+        "parameters": [
+          {
+            "description": "Return only active categories.",
+            "in": "query",
+            "name": "active_only",
+            "required": false,
+            "schema": {
+              "default": false,
+              "description": "Return only active categories.",
+              "title": "Active Only",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryResponse"
+                  },
+                  "title": "Response List Categories Api V1 Categories Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List service categories",
+        "tags": [
+          "Catalog"
+        ]
+      }
+    },
+    "/api/v1/categories/{slug}": {
+      "get": {
+        "operationId": "get_category_api_v1_categories__slug__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "title": "Slug",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Category not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get category by slug",
+        "tags": [
+          "Catalog"
+        ]
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "description": "Verify that the ShebaLink FastAPI service and repository layer are operational.",
+        "operationId": "api_health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health check",
+        "tags": [
+          "System"
+        ]
+      }
+    },
+    "/api/v1/providers": {
+      "get": {
+        "description": "Filter verified service providers by search query, category slug, Bangladesh city, or rating.",
+        "operationId": "list_providers_api_v1_providers_get",
+        "parameters": [
+          {
+            "description": "Keyword matching name, title, or area.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Keyword matching name, title, or area.",
+              "title": "Q"
+            }
+          },
+          {
+            "description": "Filter by category slug.",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter by category slug.",
+              "title": "Category"
+            }
+          },
+          {
+            "description": "City filter (Rajshahi, Dhaka, Chattogram).",
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "City filter (Rajshahi, Dhaka, Chattogram).",
+              "title": "City"
+            }
+          },
+          {
+            "description": "Minimum star rating.",
+            "in": "query",
+            "name": "min_rating",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 5.0,
+                  "minimum": 0.0,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Minimum star rating.",
+              "title": "Min Rating"
+            }
+          },
+          {
+            "description": "Only return verified providers.",
+            "in": "query",
+            "name": "verified_only",
+            "required": false,
+            "schema": {
+              "default": false,
+              "description": "Only return verified providers.",
+              "title": "Verified Only",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProviderResponse"
+                  },
+                  "title": "Response List Providers Api V1 Providers Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Search and filter local providers",
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
+    "/api/v1/providers/{provider_id}": {
+      "get": {
+        "operationId": "get_provider_api_v1_providers__provider_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider_id",
+            "required": true,
+            "schema": {
+              "title": "Provider Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get provider profile",
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
+    "/api/v1/providers/{provider_id}/reviews": {
+      "get": {
+        "operationId": "list_provider_reviews_api_v1_providers__provider_id__reviews_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "provider_id",
+            "required": true,
+            "schema": {
+              "title": "Provider Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewResponse"
+                  },
+                  "title": "Response List Provider Reviews Api V1 Providers  Provider Id  Reviews Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Provider not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List customer reviews for a provider",
+        "tags": [
+          "Reviews"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "description": "Service health and runtime diagnostics.",
+      "name": "System"
+    },
+    {
+      "description": "Service categories available across Bangladesh cities.",
+      "name": "Catalog"
+    },
+    {
+      "description": "Verified local technician discovery, filtering, and profiles.",
+      "name": "Providers"
+    },
+    {
+      "description": "Service request creation, centralized lifecycle transitions, and cancellation.",
+      "name": "Bookings"
+    },
+    {
+      "description": "Completed-booking customer ratings and provider score recalculation.",
+      "name": "Reviews"
+    },
+    {
+      "description": "Platform KPI overview and operational statistics.",
+      "name": "Admin"
+    }
+  ]
+}
