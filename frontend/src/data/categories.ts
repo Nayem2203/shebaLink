@@ -22,7 +22,6 @@ export const SERVICE_GROUP_META: Record<
 };
 
 export const INITIAL_CATEGORIES: ServiceCategory[] = [
-  // Home Repair & Maintenance (8)
   {
     id: 'cat-electrician',
     name: 'Electrician',
@@ -60,6 +59,66 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     parentId: null,
   },
   {
+    id: 'cat-home-cleaning',
+    name: 'Home Cleaning',
+    slug: 'home-cleaning',
+    group: 'cleaning-household',
+    description:
+      'Full apartment deep cleaning, kitchen degreasing, bathroom descaling, and sofa/mattress vacuuming.',
+    icon: 'Home',
+    image: '/images/categories/home-cleaning.svg',
+    active: true,
+    parentId: null,
+  },
+  {
+    id: 'cat-painter',
+    name: 'Painter',
+    slug: 'painter',
+    group: 'home-repair',
+    description:
+      'Interior and exterior wall painting, dampness treatment, putty smoothing, and weather-coat finishing.',
+    icon: 'Paintbrush',
+    image: '/images/categories/painter.svg',
+    active: true,
+    parentId: null,
+  },
+  {
+    id: 'cat-carpenter',
+    name: 'Carpenter',
+    slug: 'carpenter',
+    group: 'home-repair',
+    description:
+      'Door lock fitting, wardrobe hinge repair, wooden furniture assembly, shelving, and custom woodwork.',
+    icon: 'Hammer',
+    image: '/images/categories/carpenter.svg',
+    active: true,
+    parentId: null,
+  },
+  {
+    id: 'cat-pest-control',
+    name: 'Pest Control',
+    slug: 'pest-control',
+    group: 'cleaning-household',
+    description:
+      'Safe gel & spray treatment for cockroaches, termites, bedbugs, mosquitoes, and rodents.',
+    icon: 'Bug',
+    image: '/images/categories/pest-control.svg',
+    active: true,
+    parentId: null,
+  },
+  {
+    id: 'cat-home-shifting',
+    name: 'Home Shifting',
+    slug: 'home-shifting',
+    group: 'delivery-moving',
+    description:
+      'Covered pickup van rental, careful furniture wrapping, loading crew, and apartment-to-apartment shifting.',
+    icon: 'Truck',
+    image: '/images/categories/home-shifting.svg',
+    active: true,
+    parentId: null,
+  },
+  {
     id: 'cat-refrigerator-repair',
     name: 'Refrigerator Repair',
     slug: 'refrigerator-repair',
@@ -79,31 +138,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description:
       'Front-load and top-load drum servicing, drain pump clearing, PCB diagnostics, and spin motor fixes.',
     icon: 'WashingMachine',
-    image: '/images/categories/washing-machine.svg',
-    active: true,
-    parentId: null,
-  },
-  {
-    id: 'cat-carpenter',
-    name: 'Carpenter',
-    slug: 'carpenter',
-    group: 'home-repair',
-    description:
-      'Door lock fitting, wardrobe hinge repair, wooden furniture assembly, shelving, and custom woodwork.',
-    icon: 'Hammer',
-    image: '/images/categories/carpenter.svg',
-    active: true,
-    parentId: null,
-  },
-  {
-    id: 'cat-painter',
-    name: 'Painter',
-    slug: 'painter',
-    group: 'home-repair',
-    description:
-      'Interior and exterior wall painting, dampness treatment, putty smoothing, and weather-coat finishing.',
-    icon: 'Paintbrush',
-    image: '/images/categories/painter.svg',
+    image: '/images/categories/washing-machine-repair.svg',
     active: true,
     parentId: null,
   },
@@ -119,32 +154,6 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     active: true,
     parentId: null,
   },
-
-  // Cleaning & Household (4)
-  {
-    id: 'cat-home-cleaning',
-    name: 'Home Cleaning',
-    slug: 'home-cleaning',
-    group: 'cleaning-household',
-    description:
-      'Full apartment deep cleaning, kitchen degreasing, bathroom descaling, and sofa/mattress vacuuming.',
-    icon: 'Sparkles',
-    image: '/images/categories/home-cleaning.svg',
-    active: true,
-    parentId: null,
-  },
-  {
-    id: 'cat-pest-control',
-    name: 'Pest Control',
-    slug: 'pest-control',
-    group: 'cleaning-household',
-    description:
-      'Safe gel & spray treatment for cockroaches, termites, bedbugs, mosquitoes, and rodents.',
-    icon: 'Bug',
-    image: '/images/categories/pest-control.svg',
-    active: true,
-    parentId: null,
-  },
   {
     id: 'cat-laundry-ironing',
     name: 'Laundry & Ironing',
@@ -153,7 +162,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description:
       'Doorstep pickup wash, steam ironing, curtain & blanket cleaning, and delicate fabric care.',
     icon: 'Shirt',
-    image: '/images/categories/laundry.svg',
+    image: '/images/categories/laundry-ironing.svg',
     active: true,
     parentId: null,
   },
@@ -165,12 +174,10 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description:
       'Mechanized sludge dewatering, high-pressure scrubbing, and food-grade antibacterial tank sanitization.',
     icon: 'Container',
-    image: '/images/categories/water-tank.svg',
+    image: '/images/categories/water-tank-cleaning.svg',
     active: true,
     parentId: null,
   },
-
-  // Delivery & Moving (4)
   {
     id: 'cat-parcel-delivery',
     name: 'Parcel Delivery',
@@ -179,7 +186,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description:
       'Same-day city document & package pickup with verified rider handoff across Rajshahi and major hubs.',
     icon: 'Package',
-    image: '/images/categories/parcel.svg',
+    image: '/images/categories/parcel-delivery.svg',
     active: true,
     parentId: null,
   },
@@ -191,19 +198,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description:
       'Scheduled bazar runs, fresh produce sourcing, and pharmacy pickup delivered directly to your door.',
     icon: 'ShoppingBag',
-    image: '/images/categories/grocery.svg',
-    active: true,
-    parentId: null,
-  },
-  {
-    id: 'cat-home-shifting',
-    name: 'Home Shifting',
-    slug: 'home-shifting',
-    group: 'delivery-moving',
-    description:
-      'Covered pickup van rental, careful furniture wrapping, loading crew, and apartment-to-apartment shifting.',
-    icon: 'Truck',
-    image: '/images/categories/shifting.svg',
+    image: '/images/categories/grocery-delivery.svg',
     active: true,
     parentId: null,
   },
@@ -215,7 +210,7 @@ export const INITIAL_CATEGORIES: ServiceCategory[] = [
     description:
       'On-spot battery jump-start, flat tire change, motorbike puncture repair, and emergency tow coordination.',
     icon: 'Wrench',
-    image: '/images/categories/roadside.svg',
+    image: '/images/categories/roadside-assistance.svg',
     active: true,
     parentId: null,
   },

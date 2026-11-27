@@ -10,16 +10,16 @@ export interface PriceDisplayProps {
 
 const sizeClasses = {
   sm: {
-    amount: 'text-sm font-semibold text-slate-900',
-    meta: 'text-xs text-slate-500',
+    amount: 'text-sm font-medium text-zinc-900 font-mono tabular-nums',
+    meta: 'text-xs text-zinc-500',
   },
   md: {
-    amount: 'text-base font-bold text-slate-900',
-    meta: 'text-xs text-slate-500',
+    amount: 'text-base font-semibold text-zinc-900 font-mono tabular-nums',
+    meta: 'text-xs text-zinc-500',
   },
   lg: {
-    amount: 'text-xl font-bold text-slate-900',
-    meta: 'text-sm text-slate-500',
+    amount: 'text-2xl font-semibold text-zinc-900 font-mono tabular-nums tracking-tight',
+    meta: 'text-sm text-zinc-500',
   },
 };
 

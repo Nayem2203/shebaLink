@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" fill="none">
+  <rect width="320" height="180" fill="#EFF6FF"/>
+  <circle cx="52" cy="144" r="28" fill="#DBEAFE"/>
+  <!-- Split AC Unit -->
+  <rect x="164" y="28" width="124" height="46" rx="10" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2.5"/>
+  <line x1="176" y1="60" x2="276" y2="60" stroke="#93C5FD" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="270" cy="43" r="3" fill="#22C55E"/>
+  <!-- Cool air waves -->
+  <path d="M188 86C184 94 192 98 188 106" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M222 86C218 94 226 98 222 106" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M256 86C252 94 260 98 256 106" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+  <!-- Cartoon AC Technician -->
+  <path d="M68 122C68 106 82 98 104 98C126 98 140 106 140 122V178H68V122Z" fill="#1D4ED8" stroke="#1E1B4B" stroke-width="2.5"/>
+  <rect x="95" y="84" width="18" height="16" rx="6" fill="#E6A57E" stroke="#1E1B4B" stroke-width="2.5"/>
+  <circle cx="104" cy="64" r="24" fill="#F2B892" stroke="#1E1B4B" stroke-width="2.5"/>
+  <circle cx="95" cy="64" r="2.6" fill="#1E1B4B"/>
+  <circle cx="113" cy="64" r="2.6" fill="#1E1B4B"/>
+  <path d="M96 74C100 78 108 78 112 74" stroke="#1E1B4B" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M80 52C80 38 92 28 104 28C116 28 128 38 128 52H80Z" fill="#38BDF8" stroke="#1E1B4B" stroke-width="2.5"/>
+  <!-- Pressure Gauge -->
+  <circle cx="166" cy="136" r="18" fill="#FFFFFF" stroke="#1E1B4B" stroke-width="2.5"/>
+  <path d="M166 136L175 128" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="166" cy="136" r="3" fill="#1E1B4B"/>
+</svg>

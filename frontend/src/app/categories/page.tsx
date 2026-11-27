@@ -54,7 +54,7 @@ export default function CategoriesPage() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <PageHeader
           title="Service Categories"
-          subtitle="Explore verified local services grouped by home repair, household cleaning, and delivery & moving."
+          subtitle="Explore local services grouped by home repair, household cleaning, and delivery and moving."
           breadcrumbs={[
             { label: 'Home', href: '/' },
             { label: 'Categories' },
@@ -62,10 +62,10 @@ export default function CategoriesPage() {
           actions={
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-900 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-800"
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-brand-900 px-4 text-xs font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_2px_rgba(24,24,27,0.08)] transition-colors duration-150 hover:bg-brand-800"
             >
               <span>Search All Providers</span>
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
             </Link>
           }
         />
@@ -81,13 +81,16 @@ export default function CategoriesPage() {
             role="tab"
             aria-selected={selectedGroup === 'all'}
             onClick={() => setSelectedGroup('all')}
-            className={`rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors ${
+            className={`h-9 rounded-lg border px-3.5 text-xs font-medium transition-colors duration-150 ${
               selectedGroup === 'all'
-                ? 'border-indigo-900 bg-indigo-900 text-white'
-                : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                ? 'border-brand-900 bg-brand-900 text-white'
+                : 'border-zinc-900/10 bg-white text-zinc-700 hover:bg-surface-hover'
             }`}
           >
-            All Categories ({categories.length})
+            All Categories{' '}
+            <span className="ml-1 font-mono tabular-nums opacity-75">
+              {categories.length}
+            </span>
           </button>
           {GROUPS_ORDER.map((group) => {
             const count = categories.filter((c) => c.group === group).length;
@@ -99,13 +102,16 @@ export default function CategoriesPage() {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setSelectedGroup(group)}
-                className={`rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors ${
+                className={`h-9 rounded-lg border px-3.5 text-xs font-medium transition-colors duration-150 ${
                   active
-                    ? 'border-indigo-900 bg-indigo-900 text-white'
-                    : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                    ? 'border-brand-900 bg-brand-900 text-white'
+                    : 'border-zinc-900/10 bg-white text-zinc-700 hover:bg-surface-hover'
                 }`}
               >
-                {SERVICE_GROUP_META[group].label} ({count})
+                {SERVICE_GROUP_META[group].label}{' '}
+                <span className="ml-1 font-mono tabular-nums opacity-75">
+                  {count}
+                </span>
               </button>
             );
           })}
@@ -120,7 +126,7 @@ export default function CategoriesPage() {
             />
           </div>
         ) : (
-          <div className="mt-8 space-y-10">
+          <div className="mt-8 space-y-12">
             {visibleGroups.map((group) => {
               const groupCategories = categories.filter(
                 (c) => c.group === group
@@ -130,14 +136,14 @@ export default function CategoriesPage() {
 
               return (
                 <section key={group} aria-labelledby={`group-${group}`}>
-                  <div className="mb-4 border-b border-slate-200 pb-3">
+                  <div className="mb-5 border-b border-zinc-900/10 pb-3">
                     <h2
                       id={`group-${group}`}
-                      className="text-lg font-bold text-slate-900"
+                      className="text-lg font-semibold text-zinc-900"
                     >
                       {meta.label}
                     </h2>
-                    <p className="mt-1 text-sm text-slate-600">
+                    <p className="mt-1 text-sm text-zinc-600">
                       {meta.description}
                     </p>
                   </div>

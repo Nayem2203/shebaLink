@@ -95,30 +95,29 @@ export default function ProviderProfilePage() {
               actions={
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                  className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-zinc-900/15 bg-white px-3.5 text-xs font-medium text-zinc-800 shadow-[0_1px_2px_rgba(24,24,27,0.04)] hover:bg-surface-hover"
                 >
-                  <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+                  <ArrowLeft className="h-3.5 w-3.5 text-zinc-500" strokeWidth={1.5} aria-hidden="true" />
                   <span>Back to Discovery</span>
                 </Link>
               }
             />
 
             <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
-              {/* Main Left Content */}
               <div className="lg:col-span-8 space-y-6">
                 {/* Identity Summary Card */}
-                <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
                   <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                     <div className="flex items-start gap-4">
                       <div
                         aria-hidden="true"
-                        className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-indigo-900 text-lg font-bold text-white"
+                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-900 font-mono text-base font-medium text-white"
                       >
                         {initials}
                       </div>
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
-                          <h2 className="text-xl font-bold text-slate-900">
+                          <h2 className="text-xl font-semibold text-zinc-900">
                             {provider.name}
                           </h2>
                           {provider.verifiedStatus === 'verified' ? (
@@ -130,17 +129,17 @@ export default function ProviderProfilePage() {
                             />
                           )}
                         </div>
-                        <p className="mt-0.5 text-sm font-medium text-indigo-700">
+                        <p className="mt-0.5 text-sm font-medium text-zinc-600">
                           {provider.title}
                         </p>
-                        <div className="mt-2.5 flex flex-wrap items-center gap-4">
+                        <div className="mt-3 flex flex-wrap items-center gap-4">
                           <RatingDisplay
                             rating={provider.rating}
                             reviewCount={provider.reviewCount}
                             size="md"
                           />
-                          <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-xs font-medium text-slate-700">
-                            <Clock className="h-3.5 w-3.5 text-indigo-600" aria-hidden="true" />
+                          <span className="inline-flex items-center gap-1.5 rounded-md border border-zinc-900/10 bg-surface-canvas px-2.5 py-0.5 text-xs font-medium text-zinc-700">
+                            <Clock className="h-3.5 w-3.5 text-zinc-500" strokeWidth={1.5} aria-hidden="true" />
                             <span>{provider.availabilityLabel} (Demo)</span>
                           </span>
                         </div>
@@ -149,32 +148,32 @@ export default function ProviderProfilePage() {
                   </div>
 
                   {/* Quick Metrics Strip */}
-                  <div className="mt-6 grid grid-cols-2 gap-3 border-t border-slate-100 pt-5 sm:grid-cols-4">
+                  <div className="mt-6 grid grid-cols-2 gap-4 border-t border-zinc-900/5 pt-5 sm:grid-cols-4">
                     <div>
-                      <p className="text-xs text-slate-500">Experience</p>
-                      <p className="mt-0.5 flex items-center gap-1.5 text-sm font-semibold text-slate-900">
-                        <Briefcase className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                      <p className="text-xs text-zinc-500">Experience</p>
+                      <p className="mt-1 flex items-center gap-1.5 font-mono text-sm font-medium text-zinc-900 tabular-nums">
+                        <Briefcase className="h-4 w-4 text-zinc-400" strokeWidth={1.5} aria-hidden="true" />
                         <span>{provider.experienceYears} years</span>
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Service Areas</p>
-                      <p className="mt-0.5 flex items-center gap-1.5 text-sm font-semibold text-slate-900">
-                        <MapPin className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                      <p className="text-xs text-zinc-500">Service areas</p>
+                      <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-zinc-900">
+                        <MapPin className="h-4 w-4 text-zinc-400" strokeWidth={1.5} aria-hidden="true" />
                         <span>{provider.serviceAreas.join(', ')}</span>
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Demo Jobs Done</p>
-                      <p className="mt-0.5 flex items-center gap-1.5 text-sm font-semibold text-slate-900">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                      <p className="text-xs text-zinc-500">Demo jobs done</p>
+                      <p className="mt-1 flex items-center gap-1.5 font-mono text-sm font-medium text-zinc-900 tabular-nums">
+                        <CheckCircle2 className="h-4 w-4 text-zinc-400" strokeWidth={1.5} aria-hidden="true" />
                         <span>{provider.completedJobsCount ?? 50}+</span>
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500">Demo Contact</p>
-                      <p className="mt-0.5 flex items-center gap-1.5 text-sm font-semibold text-slate-900">
-                        <Phone className="h-4 w-4 text-slate-400" aria-hidden="true" />
+                      <p className="text-xs text-zinc-500">Demo contact</p>
+                      <p className="mt-1 flex items-center gap-1.5 font-mono text-sm font-medium text-zinc-900 tabular-nums">
+                        <Phone className="h-4 w-4 text-zinc-400" strokeWidth={1.5} aria-hidden="true" />
                         <span>{provider.phone}</span>
                       </p>
                     </div>
@@ -182,23 +181,23 @@ export default function ProviderProfilePage() {
                 </section>
 
                 {/* About & Skills */}
-                <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <h2 className="text-lg font-bold text-slate-900">
-                    About &amp; Specializations
+                <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+                  <h2 className="text-lg font-semibold text-zinc-900">
+                    About and specializations
                   </h2>
-                  <p className="mt-2.5 text-sm text-slate-600 leading-relaxed">
+                  <p className="mt-2.5 text-sm text-zinc-600 leading-relaxed">
                     {provider.bio}
                   </p>
 
                   <div className="mt-5">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                      Core Skills
+                    <h3 className="text-xs font-medium text-zinc-500">
+                      Core skills
                     </h3>
                     <div className="mt-2.5 flex flex-wrap gap-2">
                       {provider.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700"
+                          className="rounded-md border border-zinc-900/10 bg-surface-canvas px-3 py-1 text-xs font-medium text-zinc-700"
                         >
                           {skill}
                         </span>
@@ -207,35 +206,33 @@ export default function ProviderProfilePage() {
                   </div>
                 </section>
 
-                {/* Services & BDT Pricing */}
-                <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <div className="flex items-center justify-between gap-2">
-                    <div>
-                      <h2 className="text-lg font-bold text-slate-900">
-                        Services &amp; Starting Rates
-                      </h2>
-                      <p className="mt-0.5 text-xs text-slate-500">
-                        Transparent base rates in Bangladeshi Taka (&#2547;). Final quote may vary after on-site inspection.
-                      </p>
-                    </div>
+                {/* Services & BDT Rate Sheet */}
+                <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+                  <div>
+                    <h2 className="text-lg font-semibold text-zinc-900">
+                      Services and starting rates
+                    </h2>
+                    <p className="mt-1 text-xs text-zinc-500">
+                      Transparent base rates in Bangladeshi Taka (&#2547;). Final quote may vary after on-site inspection.
+                    </p>
                   </div>
 
                   {services.length === 0 ? (
-                    <p className="mt-4 text-sm text-slate-500">
+                    <p className="mt-4 text-sm text-zinc-500">
                       No active service packages listed right now.
                     </p>
                   ) : (
-                    <div className="mt-4 divide-y divide-slate-100">
+                    <div className="mt-4 divide-y divide-zinc-900/5">
                       {services.map((service) => (
                         <div
                           key={service.id}
                           className="flex flex-col gap-3 py-4 first:pt-1 last:pb-1 sm:flex-row sm:items-center sm:justify-between"
                         >
                           <div className="min-w-0">
-                            <h3 className="text-sm font-semibold text-slate-900">
+                            <h3 className="text-sm font-medium text-zinc-900">
                               {service.title}
                             </h3>
-                            <p className="mt-1 text-xs text-slate-600 leading-relaxed">
+                            <p className="mt-1 text-xs text-zinc-600 leading-relaxed">
                               {service.description}
                             </p>
                           </div>
@@ -248,7 +245,7 @@ export default function ProviderProfilePage() {
                             />
                             <Link
                               href={`/book?provider=${provider.id}&service=${service.id}`}
-                              className="inline-flex items-center justify-center rounded-lg bg-indigo-900 px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-indigo-800"
+                              className="inline-flex h-8 items-center justify-center rounded-lg bg-brand-900 px-3 text-xs font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_2px_rgba(24,24,27,0.08)] transition-colors duration-150 hover:bg-brand-800"
                             >
                               Request
                             </Link>
@@ -260,10 +257,13 @@ export default function ProviderProfilePage() {
                 </section>
 
                 {/* Customer Reviews */}
-                <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                <section className="rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
                   <div className="flex items-center justify-between gap-2">
-                    <h2 className="text-lg font-bold text-slate-900">
-                      Customer Reviews ({reviews.length})
+                    <h2 className="text-lg font-semibold text-zinc-900">
+                      Customer reviews{' '}
+                      <span className="font-mono text-sm font-normal text-zinc-500 tabular-nums">
+                        ({reviews.length})
+                      </span>
                     </h2>
                     <RatingDisplay
                       rating={provider.rating}
@@ -273,23 +273,23 @@ export default function ProviderProfilePage() {
                   </div>
 
                   {reviews.length === 0 ? (
-                    <p className="mt-4 text-sm text-slate-500">
+                    <p className="mt-4 text-sm text-zinc-500">
                       No written reviews recorded yet for this provider.
                     </p>
                   ) : (
-                    <div className="mt-4 space-y-4">
+                    <div className="mt-4 space-y-3">
                       {reviews.map((review) => (
                         <article
                           key={review.id}
-                          className="rounded-lg border border-slate-100 bg-slate-50 p-4"
+                          className="rounded-lg border border-zinc-900/5 bg-surface-canvas p-4"
                         >
                           <div className="flex flex-wrap items-center justify-between gap-2">
                             <div>
-                              <p className="text-sm font-semibold text-slate-900">
+                              <p className="text-sm font-medium text-zinc-900">
                                 {review.customerName || 'Customer'}
                               </p>
                               {review.serviceTitle && (
-                                <p className="text-xs text-slate-500">
+                                <p className="text-xs text-zinc-500">
                                   {review.serviceTitle}
                                 </p>
                               )}
@@ -300,14 +300,15 @@ export default function ProviderProfilePage() {
                                 showCount={false}
                                 size="sm"
                               />
-                              <span className="text-xs text-slate-400">
+                              <span className="font-mono text-xs text-zinc-500 tabular-nums">
                                 {new Date(review.createdAt).toLocaleDateString()}
                               </span>
                             </div>
                           </div>
-                          <p className="mt-2.5 flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
+                          <p className="mt-2.5 flex items-start gap-2 text-sm text-zinc-700 leading-relaxed">
                             <MessageSquareQuote
-                              className="mt-0.5 h-4 w-4 shrink-0 text-slate-400"
+                              className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400"
+                              strokeWidth={1.5}
                               aria-hidden="true"
                             />
                             <span>{review.comment}</span>
@@ -321,9 +322,9 @@ export default function ProviderProfilePage() {
 
               {/* Right Sticky Booking CTA */}
               <aside className="lg:col-span-4">
-                <div className="sticky top-24 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Starting Rate
+                <div className="sticky top-24 rounded-xl border border-zinc-900/10 bg-white p-6 shadow-[0_1px_2px_rgba(24,24,27,0.04)]">
+                  <p className="text-xs font-medium text-zinc-500">
+                    Starting rate
                   </p>
                   <div className="mt-1">
                     <PriceDisplay
@@ -333,25 +334,26 @@ export default function ProviderProfilePage() {
                     />
                   </div>
 
-                  <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                  <p className="mt-3 text-xs text-zinc-600 leading-relaxed">
                     {provider.responseTime || 'Usually responds promptly'} &bull;{' '}
                     Coverage in {provider.neighborhood}, {provider.primaryCity}
                   </p>
 
-                  <div className="mt-5 space-y-2.5">
+                  <div className="mt-5">
                     <Link
                       href={`/book?provider=${provider.id}`}
-                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-800"
+                      className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-brand-900 px-4 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_2px_rgba(24,24,27,0.08)] transition-colors duration-150 hover:bg-brand-800"
                     >
-                      <CalendarPlus className="h-4 w-4" aria-hidden="true" />
+                      <CalendarPlus className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
                       <span>Request Service</span>
                     </Link>
                   </div>
 
-                  <div className="mt-5 space-y-2.5 border-t border-slate-100 pt-4 text-xs text-slate-600">
+                  <div className="mt-5 space-y-2.5 border-t border-zinc-900/5 pt-4 text-xs text-zinc-600">
                     <div className="flex items-center gap-2">
                       <ShieldCheck
-                        className="h-4 w-4 shrink-0 text-emerald-600"
+                        className="h-4 w-4 shrink-0 text-zinc-500"
+                        strokeWidth={1.5}
                         aria-hidden="true"
                       />
                       <span>
@@ -362,7 +364,8 @@ export default function ProviderProfilePage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock
-                        className="h-4 w-4 shrink-0 text-indigo-600"
+                        className="h-4 w-4 shrink-0 text-zinc-500"
+                        strokeWidth={1.5}
                         aria-hidden="true"
                       />
                       <span>Saved locally in browser LocalStorage</span>

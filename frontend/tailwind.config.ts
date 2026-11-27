@@ -8,16 +8,29 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+      },
       colors: {
         brand: {
           50: '#eef2ff',
           100: '#e0e7ff',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
+          600: '#4338ca',
+          700: '#3730a3',
+          800: '#312e81',
           900: '#1e1b4b',
+          950: '#151336',
         },
+        surface: {
+          canvas: '#f7f6f2',
+          card: '#ffffff',
+          subtle: '#efede7',
+          hover: '#f2f0ea',
+        },
+      },
+      transitionTimingFunction: {
+        ease: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
     },
   },

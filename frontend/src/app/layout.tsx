@@ -1,19 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { RoleProvider } from '@/context/RoleContext';
 import { ToastProvider } from '@/components/ui/Toast';
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
 export const metadata: Metadata = {
   title: 'ShebaLink — Local Service Discovery & Booking',
   description:
-    'Find trusted local professionals for everyday household repairs, cleaning, and delivery in Rajshahi, Dhaka, and Chattogram.',
+    'Find verified local professionals for household repairs, cleaning, and moving across Rajshahi, Dhaka, and Chattogram.',
 };
 
 export default function RootLayout({
@@ -22,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased">
+    <html lang="en">
+      <body className="min-h-screen bg-surface-canvas font-sans text-zinc-900 antialiased">
         <RoleProvider>
           <ToastProvider>{children}</ToastProvider>
         </RoleProvider>

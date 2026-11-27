@@ -12,18 +12,18 @@ export interface RatingDisplayProps {
 const sizeStyles = {
   sm: {
     icon: 'w-3.5 h-3.5',
-    ratingText: 'text-xs font-semibold text-slate-900',
-    countText: 'text-xs text-slate-500',
+    ratingText: 'text-xs font-medium text-zinc-900 font-mono tabular-nums',
+    countText: 'text-xs text-zinc-500 font-mono tabular-nums',
   },
   md: {
     icon: 'w-4 h-4',
-    ratingText: 'text-sm font-semibold text-slate-900',
-    countText: 'text-xs text-slate-500',
+    ratingText: 'text-sm font-medium text-zinc-900 font-mono tabular-nums',
+    countText: 'text-xs text-zinc-500 font-mono tabular-nums',
   },
   lg: {
-    icon: 'w-5 h-5',
-    ratingText: 'text-base font-bold text-slate-900',
-    countText: 'text-sm text-slate-500',
+    icon: 'w-4 h-4',
+    ratingText: 'text-base font-semibold text-zinc-900 font-mono tabular-nums',
+    countText: 'text-sm text-zinc-500 font-mono tabular-nums',
   },
 };
 
@@ -39,7 +39,7 @@ export function RatingDisplay({
 
   return (
     <div
-      className={['inline-flex items-center gap-1', className]
+      className={['inline-flex items-center gap-1.5', className]
         .filter(Boolean)
         .join(' ')}
       aria-label={`Rating ${formattedRating} out of 5${
@@ -52,13 +52,12 @@ export function RatingDisplay({
         className={[styles.icon, 'text-amber-500 fill-amber-500 shrink-0'].join(
           ' '
         )}
+        strokeWidth={1.5}
         aria-hidden="true"
       />
       <span className={styles.ratingText}>{formattedRating}</span>
       {showCount && reviewCount !== undefined && (
-        <span className={styles.countText}>
-          ({reviewCount} {reviewCount === 1 ? 'review' : 'reviews'})
-        </span>
+        <span className={styles.countText}>({reviewCount})</span>
       )}
     </div>
   );

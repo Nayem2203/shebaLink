@@ -9,7 +9,7 @@ export interface LoadingStateProps {
 }
 
 export function LoadingState({
-  message = 'Loading content...',
+  message = 'Loading content',
   variant = 'spinner',
   count = 3,
   className = '',
@@ -29,20 +29,20 @@ export function LoadingState({
         {Array.from({ length: count }).map((_, idx) => (
           <div
             key={idx}
-            className="bg-white border border-slate-200 rounded-xl p-5 animate-pulse space-y-4"
+            className="bg-white border border-zinc-900/10 rounded-xl p-6 space-y-4"
           >
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-slate-200 shrink-0" />
+              <div className="w-11 h-11 rounded-lg bg-surface-subtle shrink-0" />
               <div className="space-y-2 flex-1">
-                <div className="h-4 bg-slate-200 rounded w-3/4" />
-                <div className="h-3 bg-slate-100 rounded w-1/2" />
+                <div className="h-4 bg-surface-subtle rounded w-3/4" />
+                <div className="h-3 bg-surface-canvas rounded w-1/2" />
               </div>
             </div>
-            <div className="h-3 bg-slate-100 rounded w-full" />
-            <div className="h-3 bg-slate-100 rounded w-5/6" />
+            <div className="h-3 bg-surface-canvas rounded w-full" />
+            <div className="h-3 bg-surface-canvas rounded w-5/6" />
             <div className="pt-2 flex justify-between items-center">
-              <div className="h-5 bg-slate-200 rounded w-20" />
-              <div className="h-9 bg-slate-200 rounded-lg w-28" />
+              <div className="h-5 bg-surface-subtle rounded w-20" />
+              <div className="h-8 bg-surface-subtle rounded-lg w-28" />
             </div>
           </div>
         ))}
@@ -57,7 +57,7 @@ export function LoadingState({
         role="status"
         aria-label={message}
         className={[
-          'bg-white border border-slate-200 rounded-xl p-5 animate-pulse space-y-3',
+          'bg-white border border-zinc-900/10 rounded-xl p-6 space-y-3',
           className,
         ]
           .filter(Boolean)
@@ -66,11 +66,11 @@ export function LoadingState({
         {Array.from({ length: count }).map((_, idx) => (
           <div
             key={idx}
-            className="flex items-center justify-between py-2 border-b border-slate-100 last:border-none gap-4"
+            className="flex items-center justify-between py-2 border-b border-zinc-900/5 last:border-none gap-4"
           >
-            <div className="h-4 bg-slate-200 rounded w-1/4" />
-            <div className="h-4 bg-slate-100 rounded w-1/3" />
-            <div className="h-6 bg-slate-200 rounded-full w-20" />
+            <div className="h-4 bg-surface-subtle rounded w-1/4" />
+            <div className="h-4 bg-surface-canvas rounded w-1/3" />
+            <div className="h-6 bg-surface-subtle rounded-md w-20" />
           </div>
         ))}
         <span className="sr-only">{message}</span>
@@ -90,10 +90,11 @@ export function LoadingState({
         .join(' ')}
     >
       <Loader2
-        className="w-8 h-8 text-indigo-600 animate-spin mb-3"
+        className="w-6 h-6 text-brand-800 animate-spin mb-3"
+        strokeWidth={1.5}
         aria-hidden="true"
       />
-      <p className="text-sm font-medium text-slate-600">{message}</p>
+      <p className="text-sm font-medium text-zinc-600">{message}</p>
     </div>
   );
 }

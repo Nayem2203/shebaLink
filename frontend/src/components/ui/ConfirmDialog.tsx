@@ -42,44 +42,44 @@ export function ConfirmDialog({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/45"
       role="dialog"
       aria-modal="true"
       aria-labelledby="confirm-dialog-title"
       aria-describedby="confirm-dialog-description"
     >
-      <div className="bg-white border border-slate-200 rounded-xl shadow-lg max-w-md w-full p-6 relative">
+      <div className="bg-white border border-zinc-900/10 rounded-xl shadow-[0_8px_24px_rgba(24,24,27,0.12)] max-w-md w-full p-6 relative animate-enter">
         <button
           type="button"
           onClick={onClose}
           disabled={isLoading}
           aria-label="Close dialog"
-          className="absolute right-4 top-4 text-slate-400 hover:text-slate-600 rounded-lg p-1"
+          className="absolute right-4 top-4 text-zinc-400 hover:text-zinc-700 rounded-lg p-1 transition-colors duration-150"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" strokeWidth={1.5} />
         </button>
 
         <div className="flex items-start gap-4">
           <div
             className={[
-              'w-10 h-10 rounded-full flex items-center justify-center shrink-0',
+              'w-10 h-10 rounded-lg flex items-center justify-center shrink-0',
               variant === 'destructive'
-                ? 'bg-rose-50 text-rose-600'
-                : 'bg-indigo-50 text-indigo-600',
+                ? 'bg-rose-50 text-rose-700'
+                : 'bg-brand-50 text-brand-800',
             ].join(' ')}
           >
-            <AlertTriangle className="w-5 h-5" aria-hidden="true" />
+            <AlertTriangle className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />
           </div>
           <div className="flex-1">
             <h2
               id="confirm-dialog-title"
-              className="text-base font-semibold text-slate-900"
+              className="text-base font-semibold text-zinc-900"
             >
               {title}
             </h2>
             <p
               id="confirm-dialog-description"
-              className="mt-1.5 text-sm text-slate-600"
+              className="mt-1.5 text-sm text-zinc-600 leading-relaxed"
             >
               {description}
             </p>

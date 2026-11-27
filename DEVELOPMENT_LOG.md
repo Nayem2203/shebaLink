@@ -171,12 +171,44 @@
 
 ---
 
-## Remaining Tasks (Milestones 11–16)
-- **Phase 5 — Dashboards**:
-  - Milestone 11: Customer Dashboard (`/dashboard/customer`)
-  - Milestone 12: Provider Dashboard (`/dashboard/provider`)
-  - Milestone 13: Admin Dashboard (`/dashboard/admin`)
-- **Phase 6 — Integration & Finalization**:
-  - Milestone 14: Full LocalStorage Integration & cross-dashboard synchronization
-  - Milestone 15: Comprehensive Dashboard & End-to-End Workflow Testing
-  - Milestone 16: Final Polish, Responsive Audit, `README.md`, and Architecture/UML Documentation
+## Phase 5 — Dashboards & LocalStorage Sync (Milestones 11–14)
+
+### Milestone 11: Customer Dashboard
+- **Status**: Completed (verified)
+- **Features Implemented**:
+  - Built `/dashboard/customer` (`frontend/src/app/dashboard/customer/page.tsx`) with summary stat cards, status filter tabs, `BookingCard` list, `BookingDetailModal`, eligible pending cancellation (`ConfirmDialog`), completed-booking review submission (`ReviewModal`), demo profile view, and Reset Demo button.
+
+### Milestone 12: Provider Dashboard
+- **Status**: Completed (verified)
+- **Features Implemented**:
+  - Built `/dashboard/provider` (`frontend/src/app/dashboard/provider/page.tsx`) with incoming/active job metrics, centralized status progression (`Accept`, `Reject`, `Start Work`, `Mark Completed`), service rate management (`upsertProviderService`, `toggleProviderServiceActive`), availability toggle (`updateProviderAvailability`), and completed earnings ledger.
+
+### Milestone 13: Admin Dashboard
+- **Status**: Completed (verified)
+- **Features Implemented**:
+  - Built `/dashboard/admin` (`frontend/src/app/dashboard/admin/page.tsx`) and `frontend/src/services/adminService.ts` with platform KPIs, Recharts `Bookings by Status` chart, city breakdown, provider verification queue, customer directory, category active/inactive management, all-bookings table, and complaint status controls.
+  - Added `/dashboard` redirect route (`frontend/src/app/dashboard/page.tsx`) and `frontend/src/__tests__/admin.test.ts`.
+
+### Milestone 14 & UI Polish (Unslop 9-Pass Refinement)
+- **Status**: Completed (verified)
+- **Features Implemented**:
+  - Applied warm-neutral canvas (`#f7f6f2`), crisp white hairline cards, `Plus Jakarta Sans` + `IBM Plex Mono` (`tabular-nums`) typography, unified `16px` `strokeWidth={1.5}` Lucide icons, quiet `RoleSwitcher` and `DashboardLayout` persona bar, asymmetric Homepage hero with live Rajshahi Dispatch Ticket preview, and subtle `cubic-bezier(0.22, 1, 0.36, 1)` motion.
+  - Resolved `next/font/google` build hang via CSS font import and eliminated `ProviderCard.tsx` `<img>` ESLint warning.
+- **Tests Performed**:
+  - `npm test` (`vitest run`: `foundation.test.ts`, `discovery.test.ts`, `admin.test.ts`, `booking.test.ts`)
+  - `npm run typecheck` (`tsc --noEmit`)
+  - `npm run lint` (`next lint`)
+  - `npm run build` (`next build`)
+- **Actual Test Results**:
+  - `vitest run`: `Test Files 4 passed (4)`, `Tests 22 passed (22)` in `3.32s` (exit code `0`)
+  - `tsc --noEmit`: `0` errors (exit code `0`)
+  - `next lint`: `✔ No ESLint warnings or errors` (exit code `0`)
+  - `next build`: Compiled successfully, `12/12` static/dynamic pages built cleanly (`/`, `/_not-found`, `/book`, `/categories`, `/categories/[slug]`, `/dashboard`, `/dashboard/admin`, `/dashboard/customer`, `/dashboard/provider`, `/providers`, `/providers/[id]`, `/services`) (exit code `0`)
+- **Commit Hash**: Pending user approval (on branch `feat/phase2-public-discovery`)
+- **Push Status**: Not pushed
+
+---
+
+## Remaining Tasks (Milestones 15–16)
+- **Milestone 15**: Comprehensive End-to-End & Integration Test Polish
+- **Milestone 16**: Final `README.md` & Architecture/UML Documentation

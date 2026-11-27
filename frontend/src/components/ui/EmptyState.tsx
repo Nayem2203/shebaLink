@@ -24,17 +24,17 @@ export function EmptyState({
   return (
     <div
       className={[
-        'flex flex-col items-center justify-center text-center bg-white border border-slate-200 rounded-xl p-8 sm:p-12',
+        'flex flex-col items-center justify-center text-center bg-white border border-zinc-900/10 rounded-xl p-8 sm:p-12 shadow-[0_1px_2px_rgba(24,24,27,0.04)]',
         className,
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center mb-4">
-        {icon || <Inbox className="w-6 h-6" aria-hidden="true" />}
+      <div className="w-11 h-11 rounded-lg bg-surface-subtle text-zinc-600 flex items-center justify-center mb-4">
+        {icon || <Inbox className="w-5 h-5" strokeWidth={1.5} aria-hidden="true" />}
       </div>
-      <h3 className="text-base font-semibold text-slate-900 mb-1">{title}</h3>
-      <p className="text-sm text-slate-600 max-w-md mb-6">{description}</p>
+      <h3 className="text-base font-medium text-zinc-900 mb-1">{title}</h3>
+      <p className="text-sm text-zinc-600 max-w-md mb-6">{description}</p>
       {actionLabel && onAction && (
         <Button variant="outline" size="md" onClick={onAction}>
           {actionLabel}

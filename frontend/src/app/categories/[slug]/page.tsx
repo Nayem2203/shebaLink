@@ -75,38 +75,38 @@ export default function CategoryDetailPage() {
                 { label: category.name },
               ]}
               badge={
-                <span className="inline-flex items-center rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-800">
+                <span className="inline-flex items-center rounded-md border border-zinc-900/10 bg-surface-subtle px-2.5 py-0.5 text-xs font-medium text-zinc-700">
                   {SERVICE_GROUP_META[category.group].label}
                 </span>
               }
               actions={
                 <Link
                   href={`/services?category=${category.slug}`}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-900 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-800"
+                  className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-brand-900 px-4 text-xs font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_2px_rgba(24,24,27,0.08)] transition-colors duration-150 hover:bg-brand-800"
                 >
-                  <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>Filter by City &amp; Price</span>
+                  <SlidersHorizontal className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
+                  <span>Filter by City and Price</span>
                 </Link>
               }
             />
 
-            <div className="mt-6 flex items-center justify-between border-b border-slate-200 pb-3">
-              <p className="text-sm text-slate-600">
+            <div className="mt-6 flex items-center justify-between border-b border-zinc-900/10 pb-3">
+              <p className="text-sm text-zinc-600">
                 Showing{' '}
-                <span className="font-semibold text-slate-900">
+                <span className="font-mono font-medium text-zinc-900 tabular-nums">
                   {providers.length}
                 </span>{' '}
                 {providers.length === 1 ? 'provider' : 'providers'} for{' '}
-                <span className="font-semibold text-slate-900">
+                <span className="font-medium text-zinc-900">
                   {category.name}
                 </span>
               </p>
               <Link
                 href="/categories"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 hover:text-indigo-900"
+                className="inline-flex items-center gap-1 text-xs font-medium text-brand-800 hover:text-brand-950"
               >
                 <span>All Categories</span>
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
               </Link>
             </div>
 
