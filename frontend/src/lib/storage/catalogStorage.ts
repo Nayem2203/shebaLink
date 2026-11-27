@@ -10,7 +10,7 @@ import type {
 } from '@/types';
 
 export const CATALOG_STORAGE_KEYS = {
-  CATEGORIES: 'shebalink_categories_v1',
+  CATEGORIES: 'shebalink_categories_v2',
   PROVIDERS: 'shebalink_providers_v1',
   SERVICES: 'shebalink_services_v1',
 } as const;
