@@ -204,11 +204,33 @@
   - `tsc --noEmit`: `0` errors (exit code `0`)
   - `next lint`: `✔ No ESLint warnings or errors` (exit code `0`)
   - `next build`: Compiled successfully, `12/12` static/dynamic pages built cleanly (`/`, `/_not-found`, `/book`, `/categories`, `/categories/[slug]`, `/dashboard`, `/dashboard/admin`, `/dashboard/customer`, `/dashboard/provider`, `/providers`, `/providers/[id]`, `/services`) (exit code `0`)
-- **Commit Hash**: Pending user approval (on branch `feat/phase2-public-discovery`)
-- **Push Status**: Not pushed
+- **Commit Hash**: `827c641`, `51cc683`, `11057a6` (`feat/phase5-dashboards-ui-polish` → PR #2 merged to `main` as `c39b80a`)
+- **Push Status**: Pushed & merged to `origin/main` (`c39b80a`)
 
 ---
 
-## Remaining Tasks (Milestones 15–16)
-- **Milestone 15**: Comprehensive End-to-End & Integration Test Polish
-- **Milestone 16**: Final `README.md` & Architecture/UML Documentation
+## Phase 6 — Self-Directed Tools (PyTest, OpenAPI/Swagger, CI/CD) & CSE 3206 Report (Milestones 15–16)
+
+### Milestone 15: PyTest Suite, External Dependency Mocks, Swagger/OpenAPI 3.1 & GitHub Actions CI
+- **Status**: Completed (verified)
+- **Features Implemented**:
+  - Upgraded `backend/` into a runnable OpenAPI 3.1 REST API (`app/main.py`, `app/api/v1/routes.py`, `app/schemas/booking.py`) backed by injectable `InMemoryMarketplaceRepository` and `NotificationGateway` (`app/services/repository.py`).
+  - Added `backend/scripts/export_openapi.py` exporting and validating `doc/openapi.json` (`OpenAPI 3.1.0`, `13` paths).
+  - Implemented PyTest test suite (`backend/pytest.ini`, `backend/tests/conftest.py`, `test_booking_status.py`, `test_api_bookings_and_mocks.py`, `test_openapi_contract.py`) with `@pytest.mark.parametrize`, `MagicMock(spec=NotificationGateway)` and mocked repository isolation (`app.dependency_overrides`), and `pytest-cov` reporting.
+  - Added Vitest mock isolation tests in `frontend/src/__tests__/mocks.test.ts` (`vi.fn()`, `vi.spyOn(storageEventBus, 'emitChange')`).
+  - Configured GitHub Actions CI pipeline in `.github/workflows/ci.yml` (`frontend-ci` + `backend-ci` with 85% coverage gate and OpenAPI drift check).
+- **Tests Performed**: `pytest --cov=app --cov-report=term-missing`, `python backend/scripts/export_openapi.py --check`, `npm test`, `npm run typecheck`, `npm run lint`
+- **Actual Test Results**:
+  - Backend PyTest: `21 passed` in `2.65s`, `91%` statement coverage (`321` statements, `28` missed)
+  - OpenAPI check: `OpenAPI 3.1.0 check passed (13 paths verified)`
+  - Frontend Vitest: `5 passed (5)` files, `24 passed (24)` tests; `0` TypeScript errors; `✔ No ESLint warnings or errors`
+
+### Milestone 16: Screenshots, UML Diagrams, README & CSE 3206 Final Lab Report
+- **Status**: Completed (verified)
+- **Deliverables Created**:
+  - Root documentation: `README.md`
+  - Complete Markdown Lab Report (with RUET CSE 3206 requirements, design patterns, tests, CI, learning log, and verified Reflection Essay): `doc/LAB_REPORT.md`
+  - Submission-ready formatted Word document with embedded screenshots & UML figures: `doc/ShebaLink_CSE3206_Lab_Report.docx`
+  - Captured 10 PNG visual artifacts in `doc/screenshots/` (`01-homepage.png` .. `07-admin-dashboard.png`, `08-swagger-openapi.png`, `09-uml-class-diagram.png`, `10-booking-state-architecture.png`).
+- **Commit Hash**: Uncommitted (pending user approval)
+- **Push Status**: Not pushed
